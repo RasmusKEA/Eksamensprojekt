@@ -1,0 +1,53 @@
+* {
+    font-family: 'Share Tech', sans-serif;
+}
+
+.logo{
+    float: left;
+}
+
+.buttonRow{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.regButton, .loginButton, .registerbutton, .resetbutton, .loginSubmit{
+    /*THIS STYLING GOES FOR EVERY BUTTON*/
+    color: white;
+    border-radius: 100px;
+    background: #00B2EE;
+    border: #00B2EE;
+    width: 140px;
+    height: 40px;
+}
+
+.regButton, .loginButton{
+    display: inline-block;
+}
+
+.register, .loginDetailDiv{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px ;
+    text-align: center;
+}
+
+.regName, .regMail, .regUsername, .regPw, .loginEmail, .loginPw {
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 25px;
+    display: block;
+
+}
+
+.registerbutton, .resetbutton, .loginSubmit{
+    margin-top: 15px;
+}
+

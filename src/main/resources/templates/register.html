@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+  <title>REGISTRER DIG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <img class="logo" src="logo.png" alt="logo" style="width: 50px; height: 50px;">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="register">
+        <form action ="/registerPost" method="post">
+          <input type="text" class="regName" id="fullname" name="fullname" placeholder="Full name" required>
+          <input type="email" class="regMail" id="email" name="email" placeholder="Email" required>
+          <input type="password" class="regPw" id="password1" name="password1" placeholder="Password" required>
+          <input type="password" class="regPw" id="password2" name="password2" placeholder="Password" required>
+          <input type="reset" value="RESET" class="resetbutton">
+          <input type="submit" value="REGISTER" class="registerbutton">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+</html>
