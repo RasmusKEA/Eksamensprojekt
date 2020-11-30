@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
 }
 
-.regButton, .loginButton, .registerbutton, .resetbutton, .loginSubmit{
+.regButton, .loginButton, .registerbutton, .resetbutton, .loginSubmit, .openProject{
     /*THIS STYLING GOES FOR EVERY BUTTON*/
     color: white;
     border-radius: 100px;
@@ -28,7 +28,7 @@
     display: inline-block;
 }
 
-.register, .loginDetailDiv{
+.register, .loginDetailDiv, .projectBrowse{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -37,17 +37,41 @@
     text-align: center;
 }
 
-.regName, .regMail, .regUsername, .regPw, .loginEmail, .loginPw {
+
+
+.regName, .regMail, .regUsername, .regPw, .loginEmail, .loginPw{
     width: 300px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 25px;
     display: block;
-
 }
 
 .registerbutton, .resetbutton, .loginSubmit{
     margin-top: 15px;
+}
+
+.projectBrowse{
+    display: block;
+    width: 750px;
+}
+
+.projects{
+    width: 225px;
+    padding: 12px;
+    border: 1px solid #00B2EE;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    float: left;
+}
+
+.projectInfo{
+    outline: none;
+    border-style: hidden;
+    size: auto;
+    width: 100%;
 }
 

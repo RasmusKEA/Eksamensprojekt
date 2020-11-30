@@ -27,13 +27,16 @@ public class IndexController {
         return "register";
     }
 
+    @GetMapping("dashboard")
+    public String dashboard(){
+        return "dashboard";
+    }
+
     @PostMapping("registerPost")
     public String registerPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
         UserServices us = new UserServices();
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
-
-
 
         if(us.registerPasswordMatch(password1, password2)){
             boolean succCreate = ur.createUser(request.getParameter("fullname"), request.getParameter("email"), password1);
@@ -59,6 +62,5 @@ public class IndexController {
         }
         redirectAttributes.addFlashAttribute("loginMessage", "Forkert email eller kodeord. Prøv igen");
         return "redirect:/login";
-
     }
 }
