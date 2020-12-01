@@ -31,10 +31,8 @@ public class ProjectController {
 
         pr.createTasks(taskName, taskHours, taskEmployees, projectID);
 
-        ArrayList<Task> taskList = pr.getTasksByProjectID(projectID);
-        model.addAttribute("taskList", taskList);
-
-
         return "redirect:/project";
     }
+
+
 }

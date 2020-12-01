@@ -33,13 +33,4 @@ public class Task {
     public void setTaskEmployees(int taskEmployees) {
         this.taskEmployees = taskEmployees;
     }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                "taskName='" + taskName + '\'' +
-                ", taskHours=" + taskHours +
-                ", taskEmployees=" + taskEmployees +
-                '}';
-    }
 }
