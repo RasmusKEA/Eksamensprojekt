@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Project;
+import com.example.demo.models.Task;
 import com.example.demo.models.User;
 import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.repositories.UserRepository;
@@ -35,14 +36,12 @@ public class DashboardController {
     }
 
     @PostMapping("projectPost")
-    public String projectPost(HttpServletRequest projectRequest){
+    public String projectPost(HttpServletRequest projectRequest, Model model){
         String projectIDString = (projectRequest.getParameter("projectID"));
         int projectID = Integer.parseInt(projectIDString.substring(13));
 
         HttpSession projectSession = projectRequest.getSession();
         projectSession.setAttribute("projectID", projectID);
-
-        pr.getTasksByProjectID(projectID);
 
         return "redirect:/project";
     }

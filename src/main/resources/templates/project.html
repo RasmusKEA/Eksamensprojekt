@@ -28,9 +28,18 @@
                 <input type="number" name="taskEmployees" placeholder="Amount of employees" required>
                 <input type="submit" value="CREATE TASK">
             </form>
+
+            <div class="test" th:each="task : ${taskList}">
+                <td th:text="${task.taskName}"></td>
+                <td th:text="${task.taskHours}"></td>
+                <td th:text="${task.taskEmployees}"></td>
+            </div>
         </div>
     </div>
 </div>
+
+
+
 
 </body>
 </html>

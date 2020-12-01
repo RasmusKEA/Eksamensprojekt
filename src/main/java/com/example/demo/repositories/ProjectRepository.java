@@ -63,7 +63,7 @@ public class ProjectRepository {
     public ArrayList<Task> getTasksByProjectID(int projectID){
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT * tasks WHERE projectid = ?");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees FROM tasks WHERE projectid = ?");
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
 
