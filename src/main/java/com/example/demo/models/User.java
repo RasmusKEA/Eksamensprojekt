@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class User {
     private int userid;
     private String fullname, email, password;

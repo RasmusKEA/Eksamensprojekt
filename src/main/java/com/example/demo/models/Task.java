@@ -1,8 +1,13 @@
 package com.example.demo.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Task {
     private String taskName;
     private int taskHours, taskEmployees;
+    private Date startDate;
 
     public Task(String taskName, int taskHours, int taskEmployees) {
         this.taskName = taskName;
@@ -32,5 +37,13 @@ public class Task {
 
     public void setTaskEmployees(int taskEmployees) {
         this.taskEmployees = taskEmployees;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 }
