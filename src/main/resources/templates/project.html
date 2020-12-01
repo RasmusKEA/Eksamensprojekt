@@ -35,16 +35,16 @@
                 <div style="width:100%">
                     <table>
                     <tr>
-                        <th>TaskName</th>
+                        <th>Task name</th>
                         <th>Amount of Hours</th>
                         <th>Amount of Employees</th>
+                        <th>Start date</th>
                     </tr>
                     <tr th:each="task : ${taskList}">
-
                         <td th:text="${task.taskName}"></td>
                         <td th:text="${task.taskHours}"></td>
                         <td th:text="${task.taskEmployees}"></td>
-
+                        <td th:text="${task.startDate}"></td>
                     </tr>
 
                 </table>

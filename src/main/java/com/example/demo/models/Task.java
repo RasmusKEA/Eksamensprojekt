@@ -7,12 +7,13 @@ import java.util.Date;
 public class Task {
     private String taskName;
     private int taskHours, taskEmployees;
-    private Date startDate;
+    private String startDate;
 
-    public Task(String taskName, int taskHours, int taskEmployees) {
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate) {
         this.taskName = taskName;
         this.taskHours = taskHours;
         this.taskEmployees = taskEmployees;
+        this.startDate = startDate;
     }
 
     public String getTaskName() {
@@ -39,11 +40,11 @@ public class Task {
         this.taskEmployees = taskEmployees;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 }

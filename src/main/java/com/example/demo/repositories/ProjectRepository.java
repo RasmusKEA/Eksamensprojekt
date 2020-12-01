@@ -45,13 +45,14 @@ public class ProjectRepository {
     }
 
 
-    public void createTasks(String taskName, int taskHours, int taskEmployees, int projectID){
+    public void createTasks(String taskName, int taskHours, int taskEmployees, int projectID, String startDate){
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO tasks (taskName, taskHours, taskEmployees, projectid) values (?, ?, ?, ?)");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO tasks (taskName, taskHours, taskEmployees, startDate, projectid) values (?, ?, ?, ?, ?)");
             ps.setString(1, taskName);
             ps.setInt(2, taskHours);
             ps.setInt(3, taskEmployees);
-            ps.setInt(4, projectID);
+            ps.setString(4, startDate);
+            ps.setInt(5, projectID);
 
             ps.executeUpdate();
 
@@ -63,12 +64,12 @@ public class ProjectRepository {
     public ArrayList<Task> getTasksByProjectID(int projectID){
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees FROM tasks WHERE projectid = ?");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate FROM tasks WHERE projectid = ?");
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3)));
+                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4)));
             }
 
         } catch (SQLException e) {
