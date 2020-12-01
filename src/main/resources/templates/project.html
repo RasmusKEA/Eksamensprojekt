@@ -30,11 +30,26 @@
                 <input type="submit" value="CREATE TASK">
             </form>
 
-            <div class="test" th:each="task : ${taskList}">
-                <td th:text="${task.taskName}"></td>
-                <td th:text="${task.taskHours}"></td>
-                <td th:text="${task.taskEmployees}"></td>
+
+            <div>
+                <div style="width:100%">
+                    <table>
+                    <tr>
+                        <th>TaskName</th>
+                        <th>Amount of Hours</th>
+                        <th>Amount of Employees</th>
+                    </tr>
+                    <tr th:each="task : ${taskList}">
+
+                        <td th:text="${task.taskName}"></td>
+                        <td th:text="${task.taskHours}"></td>
+                        <td th:text="${task.taskEmployees}"></td>
+
+                    </tr>
+
+                </table>
             </div>
+
         </div>
     </div>
 </div>
