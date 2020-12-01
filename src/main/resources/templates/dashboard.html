@@ -18,48 +18,23 @@
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row_db">
+        <div class="createProject">
+            <form action="/createPost" method="post">
+                <input type="text" class="createProjectName" name="createProjectName" placeholder="New projects name.." required>
+                <input type="submit" value="CREATE" class="createProjectButton">
+            </form>
+        </div>
         <div class="projectBrowse">
-            <div class="projects">
+            <div class="projects" th:each="projectNames : ${listOfProjects}">
                 <form action="/projectPost">
                     <input class="projectInfo" type="text" value="Project No.: 1" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Project name: Test project" readonly="readonly">
+                    <input class="projectInfo" type="text"  th:value="'Project name: ' + ${projectNames.projectName}" readonly="readonly">
                     <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
                     <input class="projectInfo" type="text" value="30/11/2020 - 12/12/2020" readonly="readonly">
                     <input type="submit" value="OPEN" class="openProject">
                 </form>
             </div>
-
-            <div class="projects">
-                <form action="/projectPost">
-                    <input class="projectInfo" type="text" value="Project No.: 1" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Project name: Test project" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
-                    <input class="projectInfo" type="text" value="30/11/2020 - 12/12/2020" readonly="readonly">
-                    <input type="submit" value="OPEN" class="openProject">
-                </form>
-            </div>
-
-            <div class="projects">
-                <form action="/projectPost">
-                    <input class="projectInfo" type="text" value="Project No.: 1" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Project name: Test project" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
-                    <input class="projectInfo" type="text" value="30/11/2020 - 12/12/2020" readonly="readonly">
-                    <input type="submit" value="OPEN" class="openProject">
-                </form>
-            </div>
-
-            <div class="projects">
-                <form action="/projectPost">
-                    <input class="projectInfo" type="text" value="Project No.: 1" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Project name: Test project" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
-                    <input class="projectInfo" type="text" value="30/11/2020 - 12/12/2020" readonly="readonly">
-                    <input type="submit" value="OPEN" class="openProject">
-                </form>
-            </div>
-
         </div>
     </div>
 </div>

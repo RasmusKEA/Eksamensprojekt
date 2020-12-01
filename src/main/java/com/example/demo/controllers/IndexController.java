@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Project;
+import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserServices;
 import org.springframework.stereotype.Controller;
@@ -8,10 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class IndexController {
     UserRepository ur = new UserRepository();
+    ProjectRepository pr = new ProjectRepository();
     @GetMapping("/")
     public String index(){
         return "index";
@@ -27,10 +32,7 @@ public class IndexController {
         return "register";
     }
 
-    @GetMapping("dashboard")
-    public String dashboard(){
-        return "dashboard";
-    }
+
 
     @PostMapping("registerPost")
     public String registerPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
@@ -51,12 +53,9 @@ public class IndexController {
 
     @PostMapping("loginPost")
     public String loginPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
-
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
         boolean correctLogin = ur.loginUser(email, password);
-
         if(correctLogin){
             return "redirect:/dashboard";
         }

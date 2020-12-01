@@ -28,7 +28,7 @@
     display: inline-block;
 }
 
-.register, .loginDetailDiv, .projectBrowse{
+.register, .loginDetailDiv, .row_db{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -36,8 +36,6 @@
     border: 1px ;
     text-align: center;
 }
-
-
 
 .regName, .regMail, .regUsername, .regPw, .loginEmail, .loginPw{
     width: 300px;
@@ -55,6 +53,11 @@
 .projectBrowse{
     display: block;
     width: 750px;
+    float: left;
+}
+
+.createProject{
+    float: right;
 }
 
 .projects{
