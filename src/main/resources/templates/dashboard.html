@@ -27,8 +27,8 @@
         </div>
         <div class="projectBrowse">
             <div class="projects" th:each="projectNames : ${listOfProjects}">
-                <form action="/projectPost">
-                    <input class="projectInfo" type="text" value="Project No.: 1" readonly="readonly">
+                <form action="/projectPost" method="post">
+                    <input class="projectInfo" name="projectID" type="text" th:value="'Project No.: ' + ${projectNames.projectID}" readonly="readonly">
                     <input class="projectInfo" type="text"  th:value="'Project name: ' + ${projectNames.projectName}" readonly="readonly">
                     <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
                     <input class="projectInfo" type="text" value="30/11/2020 - 12/12/2020" readonly="readonly">

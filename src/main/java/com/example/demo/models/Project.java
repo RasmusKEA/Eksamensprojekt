@@ -2,9 +2,15 @@ package com.example.demo.models;
 
 public class Project {
     private String projectName;
+    private int projectID;
 
     public Project(String projectName) {
         this.projectName = projectName;
+    }
+
+    public Project(String projectName, int projectID) {
+        this.projectName = projectName;
+        this.projectID = projectID;
     }
 
     public String getProjectName() {
@@ -13,5 +19,13 @@ public class Project {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public int getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
     }
 }

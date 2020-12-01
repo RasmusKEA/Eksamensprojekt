@@ -1,8 +1,10 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.Project;
+import com.example.demo.models.Task;
 import com.example.demo.services.DBConnection;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,11 +28,11 @@ public class ProjectRepository {
         ArrayList<Project> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT projectname FROM projects");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname FROM projects");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                listToReturn.add(new Project(rs.getString(1)));
+                listToReturn.add(new Project(rs.getString(2),rs.getInt(1)));
             }
 
         } catch (SQLException e) {
@@ -42,6 +44,39 @@ public class ProjectRepository {
         return listToReturn;
     }
 
+
+    public void createTasks(String taskName, int taskHours, int taskEmployees, int projectID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO tasks (taskName, taskHours, taskEmployees, projectid) values (?, ?, ?, ?)");
+            ps.setString(1, taskName);
+            ps.setInt(2, taskHours);
+            ps.setInt(3, taskEmployees);
+            ps.setInt(4, projectID);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Task> getTasksByProjectID(int projectID){
+        ArrayList<Task> listToReturn = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT * tasks WHERE projectid = ?");
+            ps.setInt(1, projectID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listToReturn;
+
+    }
 
 
 

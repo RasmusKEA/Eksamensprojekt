@@ -3,6 +3,7 @@
 }
 
 .logo{
+    margin-top: 25px;
     float: left;
 }
 
@@ -76,5 +77,10 @@
     border-style: hidden;
     size: auto;
     width: 100%;
+}
+
+.createTasks{
+    margin: auto;
+    display: block;
 }
 
