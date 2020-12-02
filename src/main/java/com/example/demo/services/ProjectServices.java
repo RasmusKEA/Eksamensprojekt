@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class ProjectServices {
 
     public String formatDate(String date){
-        DateTimeFormatter OLD_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd");
+        DateTimeFormatter OLD_FORMAT = DateTimeFormatter.ofPattern( "yyyy-MM-dd HH:mm:ss");
         LocalDate localDate = LocalDate.parse(date, OLD_FORMAT);
 
         DateTimeFormatter NEW_FORMAT = DateTimeFormatter.ofPattern( "dd/MM/yyyy");
@@ -33,6 +33,6 @@ public class ProjectServices {
         }
 
 
-        return formatDate(result.toString());
+        return result.toString();
     }
 }

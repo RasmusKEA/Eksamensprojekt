@@ -17,6 +17,13 @@ public class Task {
         this.endDate = endDate;
     }
 
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate) {
+        this.taskName = taskName;
+        this.taskHours = taskHours;
+        this.taskEmployees = taskEmployees;
+        this.startDate = startDate;
+    }
+
     public String getTaskName() {
         return taskName;
     }

@@ -33,18 +33,14 @@ public class ProjectController {
         int taskHours = Integer.parseInt(taskRequest.getParameter("taskHours"));
         int taskEmployees = Integer.parseInt(taskRequest.getParameter("taskEmployees"));
         int projectID = (int) projectRequest.getSession().getAttribute("projectID");
-        String date = taskRequest.getParameter("startDate");
+        String startDate = taskRequest.getParameter("startDate");
 
         double calcWorkhours = Math.ceil(((double) taskHours/(double) taskEmployees)/8.0);
         int workhours = (int) calcWorkhours;
-        System.out.println(workhours);
 
 
-        LocalDate dateObj = LocalDate.parse(date);
+        LocalDate dateObj = LocalDate.parse(startDate);
         String endDate = ps.calcEndDate(dateObj, workhours);
-
-        String startDate = ps.formatDate(date);
-
 
         pr.createTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate);
 
