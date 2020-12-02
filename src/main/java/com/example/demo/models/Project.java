@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.Objects;
+
 public class Project {
     private String projectName;
     private int projectID;
@@ -51,5 +53,28 @@ public class Project {
 
     public void setProjectEndDate(String projectEndDate) {
         this.projectEndDate = projectEndDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return projectID == project.projectID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(projectID);
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectName='" + projectName + '\'' +
+                ", projectID=" + projectID +
+                ", projectStartDate='" + projectStartDate + '\'' +
+                ", projectEndDate='" + projectEndDate + '\'' +
+                '}';
     }
 }

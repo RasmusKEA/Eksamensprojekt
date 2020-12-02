@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ProjectRepository {
     DBConnection connection = new DBConnection();
+    ProjectServices projectServices = new ProjectServices();
     public void createNewProject(String projectName){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO projects (projectname) VALUES (?)");
@@ -30,12 +31,26 @@ public class ProjectRepository {
         ArrayList<Project> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname FROM projects");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname, MIN(startDate), MAX(endDate) FROM projects, tasks WHERE idprojects = projectid GROUP BY projectid");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                listToReturn.add(new Project(rs.getString(2),rs.getInt(1)));
+                listToReturn.add(new Project(rs.getString(2),rs.getInt(1), projectServices.formatDate(rs.getString(3)), projectServices.formatDate(rs.getString(4))));
             }
+
+            ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname FROM projects");
+            rs = ps.executeQuery();
+            ArrayList<Project> tempList = new ArrayList<>();
+
+            while(rs.next()){
+                tempList.add(new Project(rs.getString(2), rs.getInt(1), "No date ", "set yet"));
+            }
+            
+            tempList.removeAll(listToReturn);
+            listToReturn.addAll(tempList);
+
+            listToReturn.toString();
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +80,7 @@ public class ProjectRepository {
     }
 
     public ArrayList<Task> getTasksByProjectID(int projectID){
-        ProjectServices projectServices = new ProjectServices();
+
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate FROM tasks WHERE projectid = ?");
