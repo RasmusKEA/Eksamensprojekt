@@ -3,11 +3,13 @@ package com.example.demo.repositories;
 import com.example.demo.models.Project;
 import com.example.demo.models.Task;
 import com.example.demo.services.DBConnection;
+import com.example.demo.services.ProjectServices;
 
 import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ProjectRepository {
@@ -63,6 +65,7 @@ public class ProjectRepository {
     }
 
     public ArrayList<Task> getTasksByProjectID(int projectID){
+        ProjectServices projectServices = new ProjectServices();
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate FROM tasks WHERE projectid = ?");
@@ -70,7 +73,8 @@ public class ProjectRepository {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+
+                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), projectServices.formatDate(rs.getString(4)), projectServices.formatDate(rs.getString(5))));
             }
 
         } catch (SQLException e) {
@@ -78,6 +82,19 @@ public class ProjectRepository {
         }
         return listToReturn;
 
+    }
+
+    public ArrayList<Project> getProjectDisplay(){
+        ArrayList<Project> listToReturn = new ArrayList<>();
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname, projectid, startDate, DATE(STR_TO_DATE(startDate, '%d/%m/%Y' )) AS startDate FROM tasks, projects WHERE projectid = idprojects AND 1 ORDER BY startDate ASC LIMIT 1");
+
+            ResultSet rs = ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listToReturn;
     }
 
 
