@@ -32,7 +32,7 @@
 
 
             <div>
-                <div style="width:100%">
+                <div>
                     <table>
                     <tr>
                         <th>Task name</th>
@@ -41,18 +41,20 @@
                         <th>Start date</th>
                     </tr>
                     <tr th:each="task : ${taskList}">
+                        
                         <td th:text="${task.taskName}"></td>
                         <td th:text="${task.taskHours}"></td>
                         <td th:text="${task.taskEmployees}"></td>
                         <td th:text="${task.startDate}"></td>
                     </tr>
-
                 </table>
             </div>
-
+            </div>
         </div>
     </div>
 </div>
+
+
 
 </body>
 </html>
