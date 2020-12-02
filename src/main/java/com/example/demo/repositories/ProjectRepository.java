@@ -45,7 +45,7 @@ public class ProjectRepository {
             while(rs.next()){
                 tempList.add(new Project(rs.getString(2), rs.getInt(1), "No date ", "set yet"));
             }
-            
+
             tempList.removeAll(listToReturn);
             listToReturn.addAll(tempList);
 
