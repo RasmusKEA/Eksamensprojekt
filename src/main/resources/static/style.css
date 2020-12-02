@@ -93,13 +93,15 @@ table{
 tr:nth-child(even){
     background-color: #f2f2f2;
 }
+
 th{
     color: white;
     border-collapse: collapse;
     background: #00B2EE;
     border: #00B2EE;
-
 }
+
+
 
 
 
