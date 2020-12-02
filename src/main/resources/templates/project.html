@@ -30,30 +30,31 @@
                 <input type="submit" value="CREATE TASK">
             </form>
 
-
             <div>
-            <div th:if=${!#lists.isEmpty(taskList)}>
-                    <table>
-                    <tr>
-                        <th>Task name</th>
-                        <th>Amount of Hours</th>
-                        <th>Amount of Employees</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                    </tr>
-                    <tr th:each="task : ${taskList}">
-                        
-                        <td th:text="${task.taskName}"></td>
-                        <td th:text="${task.taskHours}"></td>
-                        <td th:text="${task.taskEmployees}"></td>
-                        <td th:text="${task.startDate}"></td>
-                        <td th:text="${task.endDate}"></td>
-                    </tr>
-                </table>
+                <div th:if=${!#lists.isEmpty(taskList)}>
+                    <table class="taskTable">
+                        <tr>
+                            <th>Task name</th>
+                            <th>Amount of Hours</th>
+                            <th>Amount of Employees</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                        </tr>
+                        <tr th:each="task : ${taskList}">
+
+                            <td th:text="${task.taskName}"></td>
+                            <td th:text="${task.taskHours}"></td>
+                            <td th:text="${task.taskEmployees}"></td>
+                            <td th:text="${task.startDate}"></td>
+                            <td th:text="${task.endDate}"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            </div>
+
         </div>
     </div>
+
 </div>
 
 
