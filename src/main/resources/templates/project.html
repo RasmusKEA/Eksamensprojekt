@@ -39,6 +39,7 @@
                         <th>Amount of Hours</th>
                         <th>Amount of Employees</th>
                         <th>Start date</th>
+                        <th>End date</th>
                     </tr>
                     <tr th:each="task : ${taskList}">
                         
@@ -46,6 +47,7 @@
                         <td th:text="${task.taskHours}"></td>
                         <td th:text="${task.taskEmployees}"></td>
                         <td th:text="${task.startDate}"></td>
+                        <td th:text="${task.endDate}"></td>
                     </tr>
                 </table>
             </div>
