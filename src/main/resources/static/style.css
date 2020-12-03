@@ -58,7 +58,9 @@
 }
 
 .createProject{
-    float: right;
+    margin: auto;
+    text-align: center;
+
 }
 
 .projects{
@@ -69,7 +71,7 @@
     margin-top: 10px;
     margin-left: 10px;
     display: inline-block;
-    float: left;
+    text-align: center;
 }
 
 .projectInfo{
