@@ -79,9 +79,15 @@
     width: 100%;
 }
 
-.createTasks, .taskTable{
+.createTasks, .taskTable, .createSubProject{
     margin: auto;
-    display: block;
+}
+
+.createSubProject{
+    display: flex;
+    float: right !important;
+    text-align: center;
+    justify-content: end;
 }
 
 

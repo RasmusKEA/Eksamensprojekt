@@ -23,6 +23,7 @@
     <div class="row">
         <div class="createTasks">
             <form action="createTaskPost" method="post">
+                
                 <input type="text" name="taskName" placeholder="Task name" required>
                 <input type="number" name="taskHours" placeholder="Amount of hours" required>
                 <input type="number" name="taskEmployees" placeholder="Amount of employees" required>
@@ -30,7 +31,9 @@
                 <input type="submit" value="CREATE TASK">
             </form>
         </div>
+    </div>
 
+    <div class="row">
         <div class="createSubProject">
             <form class="createSubProjectPost">
                 <input type="text" name="subProjectName" placeholder="Sub project name">
@@ -38,6 +41,7 @@
             </form>
         </div>
     </div>
+
 
     <div class="row">
         <div th:if=${!#lists.isEmpty(taskList)} class="taskTable">
@@ -61,8 +65,6 @@
         </div>
     </div>
 </div>
-
-
 
 </body>
 </html>
