@@ -83,12 +83,6 @@
     margin: auto;
 }
 
-.createSubProject{
-    display: flex;
-    float: right !important;
-    text-align: center;
-    justify-content: end;
-}
 
 
 table{
