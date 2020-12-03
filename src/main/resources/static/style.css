@@ -77,7 +77,7 @@
     width: 100%;
 }
 
-.createTasks, .taskTable, .createSubProject{
+.createTasks, .createSubProject{
     margin: auto;
 }
 
@@ -100,8 +100,12 @@ th{
 }
 
 .showTasks{
-    table-layout: auto;
+    margin: auto;
+    margin-top: 10px;
+    table-layout: fixed;
+    width: 75%;
 }
+
 
 
 

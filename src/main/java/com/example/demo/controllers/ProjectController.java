@@ -47,4 +47,15 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    @PostMapping("createSubProjectPost")
+    public String createSubProjectPost(HttpServletRequest SPrequest, HttpServletRequest projectRequest){
+        String subProjectName = SPrequest.getParameter("subProjectName");
+        int projectID = (int) projectRequest.getSession().getAttribute("projectID");
+
+        pr.createSubProject(subProjectName, projectID);
+
+
+        return "redirect:/project";
+    }
+
 }

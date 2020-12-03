@@ -23,6 +23,11 @@
     <div class="row">
         <div class="createTasks">
             <form action="createTaskPost" method="post">
+                <select name="subprojects" required>
+                    <option value="" disabled selected>Select sub project</option>
+                    <option value="None">None</option>
+                </select>
+
                 <input type="text" name="taskName" placeholder="Task name" required>
                 <input type="number" name="taskHours" placeholder="Amount of hours" required>
                 <input type="number" name="taskEmployees" placeholder="Amount of employees" required>
@@ -34,8 +39,8 @@
 
     <div class="row">
         <div class="createSubProject">
-            <form class="createSubProjectPost">
-                <input type="text" name="subProjectName" placeholder="Sub project name">
+            <form action="createSubProjectPost" method="post">
+                <input type="text" name="subProjectName" placeholder="Sub project name" required>
                 <input type="submit" value="CREATE SUB PROJECT">
             </form>
         </div>
@@ -53,7 +58,6 @@
                     <th>End date</th>
                 </tr>
                 <tr th:each="task : ${taskList}">
-
                     <td th:text="${task.taskName}"></td>
                     <td th:text="${task.taskHours}"></td>
                     <td th:text="${task.taskEmployees}"></td>
@@ -63,6 +67,8 @@
             </table>
         </div>
     </div>
+
+
 </div>
 
 </body>

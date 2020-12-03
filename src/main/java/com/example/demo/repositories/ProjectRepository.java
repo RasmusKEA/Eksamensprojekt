@@ -112,6 +112,18 @@ public class ProjectRepository {
         return listToReturn;
     }
 
+    public void createSubProject(String subProjectName, int projectID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO subprojects (subprojectName, projectid) VALUES (?, ?)");
+            ps.setString(1, subProjectName);
+            ps.setInt(2, projectID);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
