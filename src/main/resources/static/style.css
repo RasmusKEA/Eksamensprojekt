@@ -79,7 +79,7 @@
     width: 100%;
 }
 
-.createTasks{
+.createTasks, .taskTable{
     margin: auto;
     display: block;
 }
@@ -101,6 +101,9 @@ th{
     border: #00B2EE;
 }
 
+.showTasks{
+    table-layout: auto;
+}
 
 
 
