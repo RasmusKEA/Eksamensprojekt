@@ -57,7 +57,9 @@
 }
 
 .createProject{
-    float: right;
+    margin: auto;
+    text-align: center;
+
 }
 
 .projects{
@@ -67,6 +69,8 @@
     border-radius: 4px;
     margin-top: 10px;
     margin-left: 10px;
+    display: inline-block;
+    text-align: center;
     float: left;
 }
 

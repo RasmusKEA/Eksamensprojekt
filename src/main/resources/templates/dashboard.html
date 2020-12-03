@@ -18,13 +18,16 @@
 </div>
 
 <div class="container">
-    <div class="row_db">
         <div class="createProject">
             <form action="/createPost" method="post">
                 <input type="text" class="createProjectName" name="createProjectName" placeholder="New projects name.." required>
                 <input type="submit" value="CREATE" class="createProjectButton">
             </form>
         </div>
+
+
+
+            <div class="container">
         <div class="projectBrowse">
             <div class="projects" th:each="projectNames : ${listOfProjects}">
                 <form action="/projectPost" method="post">
@@ -35,8 +38,11 @@
                     <input type="submit" value="OPEN" class="openProject">
                 </form>
             </div>
-        </div>
-    </div>
+            </div>
+            </div>
 </div>
+
+
+
 </body>
 </html>
