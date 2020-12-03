@@ -53,13 +53,12 @@
 
 .projectBrowse{
     width: 750px;
-    float: left;
+    margin:auto;
 }
 
 .createProject{
     margin: auto;
     text-align: center;
-
 }
 
 .projects{
