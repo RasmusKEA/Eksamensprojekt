@@ -52,7 +52,6 @@
 }
 
 .projectBrowse{
-    display: block;
     width: 750px;
     float: left;
 }
@@ -72,6 +71,7 @@
     margin-left: 10px;
     display: inline-block;
     text-align: center;
+    float: left;
 }
 
 .projectInfo{
