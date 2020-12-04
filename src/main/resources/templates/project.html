@@ -35,7 +35,7 @@
                 <input type="submit" value="CREATE TASK">
             </form>
         </div>
-    </div>
+
 
     <div class="row">
         <div class="createSubProject">
@@ -44,7 +44,7 @@
                 <input type="submit" value="CREATE SUB PROJECT">
             </form>
         </div>
-    </div>
+
 
 
     <div class="row">
@@ -66,12 +66,12 @@
                 </tr>
             </table>
         </div>
-    </div>
+
 </div>
 
 <div th:if=${!#lists.isEmpty(spTask)} class="taskTable">
     <div th:each="spTask : ${spTask}">
-        <table class="showTasks" >
+        <table class="showTasks">
             <tr>
                 <th>Sub project name</th>
                 <th>Task name</th>
@@ -84,9 +84,9 @@
     </div>
 </div>
 
-
-
-
+</div>
+</div>
+</div>
 
 
 
