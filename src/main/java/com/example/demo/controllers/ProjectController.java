@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -24,10 +23,10 @@ public class ProjectController {
 
         ArrayList<Task> taskList = pr.getTasksByProjectID((int) projectRequest.getSession().getAttribute("projectID"));
         ArrayList<SubProject> spList = pr.getSubProjects((int) projectRequest.getSession().getAttribute("projectID"));
-        ArrayList<SubProject> test = pr.getEntireSubProject1();
+        ArrayList<SubProject> spTask = pr.getEntireSubProject1();
 
 
-        model.addAttribute("test", test);
+        model.addAttribute("spTask", spTask);
         model.addAttribute("taskList", taskList);
         model.addAttribute("spList", spList);
         return "project";
