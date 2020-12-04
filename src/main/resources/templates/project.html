@@ -24,7 +24,7 @@
             <form action="/createTaskPost" method="post" >
                 <select name="subprojects" required >
                     <option value="" disabled selected>Select sub project</option>
-                    <option value="None">None</option>
+                    <option value="0">None</option>
                     <option th:each="sp : ${spList}" th:text="${sp.subProjectName}" th:value="${sp.subProjectID}"></option>
                 </select>
 

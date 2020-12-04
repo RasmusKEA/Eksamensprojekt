@@ -86,7 +86,7 @@ public class ProjectRepository {
 
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, subProjectID FROM tasks WHERE projectid = ?");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, subProjectID FROM tasks WHERE projectid = ? AND subprojectid = 0");
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
 
@@ -132,37 +132,6 @@ public class ProjectRepository {
         return listToReturn;
     }
 
-    public ArrayList<SubProject> getEntireSubProject(){
-        ArrayList<SubProject> listToReturn = new ArrayList<>();
-        ArrayList<Task> listOfTask = new ArrayList<>();
-
-        try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectname, taskName \n" +
-                    "from subprojects \n" +
-                    "inner join tasks \n" +
-                    "on subprojects.idsubprojects = tasks.subprojectid\n" +
-                    "order by idsubprojects, idtasks");
-
-            ResultSet rs = ps.executeQuery();
-
-            int SPIDcompare = -1;
-            while (rs.next()){
-                if(SPIDcompare == rs.getInt(1)){
-                    listOfTask.add(new Task(rs.getString(3)));
-                    listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask));
-                }else{
-                    SPIDcompare = rs.getInt(1);
-                    listOfTask.add(new Task(rs.getString(3)));
-                    listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask));
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return listToReturn;
-    }
-
     private SubProject getSubProject( int subProjectID, List<SubProject> subProjects) {
         return subProjects.stream()
                 // change 'p.getSubProjectID()' into 'p.subProjectID' if you don't have a getter
@@ -171,16 +140,19 @@ public class ProjectRepository {
                 .orElse( null );
     }
 
-    public ArrayList<SubProject> getEntireSubProject1(){
+    public ArrayList<SubProject> getEntireSubProject1(int projectID){
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectname, taskName \n" +
+            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName\n" +
                     "from subprojects \n" +
                     "inner join tasks \n" +
-                    "on subprojects.idsubprojects = tasks.subprojectid\n" +
-                    "order by idsubprojects, idtasks");
+                    "on subprojects.idsubprojects = tasks.subprojectid \n" +
+                    "WHERE tasks.projectid = ? AND subprojects.projectid = ?\n" +
+                    "order by idsubprojects, idtasks ");
 
+            ps.setInt(1, projectID);
+            ps.setInt(2, projectID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
