@@ -1,13 +1,19 @@
 package com.example.demo.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 public class Task {
     private String taskName;
-    private int taskHours, taskEmployees;
+    private int taskHours, taskEmployees, subProjectID;
     private String startDate, endDate;
+
+
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int subProjectID) {
+        this.taskName = taskName;
+        this.taskHours = taskHours;
+        this.taskEmployees = taskEmployees;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.subProjectID = subProjectID;
+    }
 
     public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate) {
         this.taskName = taskName;
@@ -15,6 +21,10 @@ public class Task {
         this.taskEmployees = taskEmployees;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Task(String taskName) {
+        this.taskName = taskName;
     }
 
     public Task(String taskName, int taskHours, int taskEmployees, String startDate) {
@@ -62,5 +72,18 @@ public class Task {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public int getSubProjectID() {
+        return subProjectID;
+    }
+
+    public void setSubProjectID(int subProjectID) {
+        this.subProjectID = subProjectID;
+    }
+
+    @Override
+    public String toString() {
+        return taskName;
     }
 }

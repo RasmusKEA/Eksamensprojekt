@@ -21,10 +21,11 @@
 <div class="container">
     <div class="row">
         <div class="createTasks">
-            <form action="createTaskPost" method="post">
-                <select name="subprojects" required>
+            <form action="/createTaskPost" method="post" >
+                <select name="subprojects" required >
                     <option value="" disabled selected>Select sub project</option>
                     <option value="None">None</option>
+                    <option th:each="sp : ${spList}" th:text="${sp.subProjectName}" th:value="${sp.subProjectID}"></option>
                 </select>
 
                 <input type="text" name="taskName" placeholder="Task name" required>
@@ -66,9 +67,32 @@
             </table>
         </div>
     </div>
-
-
 </div>
+
+<div th:if=${!#lists.isEmpty(test)} class="taskTable">
+    <div th:each="test : ${test}">
+        <table class="showTasks" >
+            <tr>
+                <th>Sub project name</th>
+                <th>Task name</th>
+            </tr>
+            <tr th:each="test1 : ${test.tasks}">
+                <td th:text="${test.subProjectName}"></td>
+                <td th:text="${test1.taskName}"></td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
