@@ -67,22 +67,27 @@
             </table>
         </div>
     </div>
+
+    <div class="row">
+        <div th:if=${!#lists.isEmpty(spTask)} class="taskTable">
+            <div th:each="spTask : ${spTask}">
+                <table class="showTasks" >
+                    <tr>
+                        <th>Sub project name</th>
+                        <th>Task name</th>
+                    </tr>
+                    <tr th:each="spTask1 : ${spTask.tasks}">
+                        <td th:text="${spTask.subProjectName}"></td>
+                        <td th:text="${spTask1.taskName}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div th:if=${!#lists.isEmpty(spTask)} class="taskTable">
-    <div th:each="spTask : ${spTask}">
-        <table class="showTasks" >
-            <tr>
-                <th>Sub project name</th>
-                <th>Task name</th>
-            </tr>
-            <tr th:each="spTask1 : ${spTask.tasks}">
-                <td th:text="${spTask.subProjectName}"></td>
-                <td th:text="${spTask1.taskName}"></td>
-            </tr>
-        </table>
-    </div>
-</div>
+
 
 
 
