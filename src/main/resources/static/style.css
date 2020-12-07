@@ -82,6 +82,16 @@
 
 .createTasks, .createSubProject{
     margin: auto;
+
+}
+.createTaskSubmit, .createSubSubmit{
+    color: white;
+    border-radius: 100px;
+    background: #00B2EE;
+    border: #00B2EE;
+    width: 140px;
+    height: 30px;
+    margin-top: 10px;
 }
 
 
