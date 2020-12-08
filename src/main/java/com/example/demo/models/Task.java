@@ -2,25 +2,27 @@ package com.example.demo.models;
 
 public class Task {
     private String taskName;
-    private int taskHours, taskEmployees, subProjectID;
+    private int taskHours, taskEmployees, subProjectID, taskID;
     private String startDate, endDate;
 
 
-    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int subProjectID) {
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int subProjectID, int taskID) {
         this.taskName = taskName;
         this.taskHours = taskHours;
         this.taskEmployees = taskEmployees;
         this.startDate = startDate;
         this.endDate = endDate;
         this.subProjectID = subProjectID;
+        this.taskID = taskID;
     }
 
-    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate) {
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int taskID) {
         this.taskName = taskName;
         this.taskHours = taskHours;
         this.taskEmployees = taskEmployees;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.taskID = taskID;
     }
 
     public Task(String taskName) {
@@ -80,6 +82,14 @@ public class Task {
 
     public void setSubProjectID(int subProjectID) {
         this.subProjectID = subProjectID;
+    }
+
+    public int getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
     }
 
     @Override

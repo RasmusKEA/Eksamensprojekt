@@ -58,13 +58,18 @@
                     <th>Amount of Employees</th>
                     <th>Start date</th>
                     <th>End date</th>
+                    <th></th>
                 </tr>
                 <tr th:each="task : ${taskList}">
-                    <td th:text="${task.taskName}"></td>
-                    <td th:text="${task.taskHours}"></td>
-                    <td th:text="${task.taskEmployees}"></td>
-                    <td th:text="${task.startDate}"></td>
-                    <td th:text="${task.endDate}"></td>
+                    <form action="deleteTask" method="post">
+                        <input type="hidden" th:value="${task.taskID}" name="test">
+                        <td th:text="${task.taskName}"></td>
+                        <td th:text="${task.taskHours}"></td>
+                        <td th:text="${task.taskEmployees}"></td>
+                        <td th:text="${task.startDate}"></td>
+                        <td th:text="${task.endDate}"></td>
+                        <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></td>
+                    </form>
                 </tr>
             </table>
         </div>
@@ -81,19 +86,25 @@
                         <th>Amount of Employees</th>
                         <th>Start date</th>
                         <th>End date</th>
+                        <th></th>
                     </tr>
                     <tr th:each="spTask1 : ${spTask.tasks}">
-                        <td th:text="${spTask.subProjectName}"></td>
-                        <td th:text="${spTask1.taskName}"></td>
-                        <td th:text="${spTask1.taskHours}"></td>
-                        <td th:text="${spTask1.taskEmployees}"></td>
-                        <td th:text="${spTask1.startDate}"></td>
-                        <td th:text="${spTask1.endDate}"></td>
+                        <form action="deleteTask" method="post" >
+                            <input type="hidden" th:value="${spTask1.taskID}" name="test">
+                            <td th:text="${spTask.subProjectName}"></td>
+                            <td th:text="${spTask1.taskName}"> </td>
+                            <td th:text="${spTask1.taskHours}"></td>
+                            <td th:text="${spTask1.taskEmployees}"></td>
+                            <td th:text="${spTask1.startDate}"></td>
+                            <td th:text="${spTask1.endDate}"> </td>
+                            <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></td>
+                        </form>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
+
 </div>
 </body>
 </html>

@@ -65,4 +65,12 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    @PostMapping("deleteTask")
+    public String deleteTask (HttpServletRequest SPrequest){
+        String spTaskID = SPrequest.getParameter("test");
+        System.out.println(spTaskID);
+
+        return "redirect:/project";
+    }
+
 }

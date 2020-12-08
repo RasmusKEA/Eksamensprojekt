@@ -86,13 +86,13 @@ public class ProjectRepository {
 
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, subProjectID FROM tasks WHERE projectid = ? AND subprojectid = 0");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, subProjectID, idtasks FROM tasks WHERE projectid = ? AND subprojectid = 0");
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
 
-                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), projectServices.formatDate(rs.getString(4)), projectServices.formatDate(rs.getString(5)), rs.getInt(6)));
+                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), projectServices.formatDate(rs.getString(4)), projectServices.formatDate(rs.getString(5)), rs.getInt(6), rs.getInt(7)));
             }
 
         } catch (SQLException e) {
@@ -143,7 +143,7 @@ public class ProjectRepository {
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate\n" +
+            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate, idtasks\n" +
                     "from subprojects \n" +
                     "inner join tasks \n" +
                     "on subprojects.idsubprojects = tasks.subprojectid \n" +
@@ -158,10 +158,10 @@ public class ProjectRepository {
                 SubProject subProject = getSubProject(rs.getInt(1), listToReturn);
                 if( subProject == null ){
                     ArrayList<Task> listOfTask = new ArrayList<>();
-                    listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7))));
+                    listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
                     listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask));
                 }else{
-                    subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7))));
+                    subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
                 }
             }
 
@@ -170,6 +170,8 @@ public class ProjectRepository {
         }
         return listToReturn;
     }
+
+
 
 
 }
