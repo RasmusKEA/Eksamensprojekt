@@ -17,6 +17,7 @@ import java.util.List;
 public class ProjectRepository {
     DBConnection connection = new DBConnection();
     ProjectServices projectServices = new ProjectServices();
+
     public void createNewProject(String projectName){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO projects (projectname) VALUES (?)");
@@ -117,7 +118,7 @@ public class ProjectRepository {
     public ArrayList<SubProject> getSubProjects(int projectID){
         ArrayList<SubProject> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT subprojectname, idsubprojects FROM subprojects WHERE projectid = ?");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT subprojectname, idsubprojects FROM subprojects WHERE projectid = ? AND idsubprojects != 0");
 
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
@@ -147,7 +148,7 @@ public class ProjectRepository {
                     "from subprojects \n" +
                     "inner join tasks \n" +
                     "on subprojects.idsubprojects = tasks.subprojectid \n" +
-                    "WHERE tasks.projectid = ? AND subprojects.projectid = ?\n" +
+                    "WHERE tasks.projectid = ? AND subprojects.projectid = ? AND idsubprojects != 0\n " +
                     "order by idsubprojects, idtasks ");
 
             ps.setInt(1, projectID);
@@ -169,6 +170,19 @@ public class ProjectRepository {
             e.printStackTrace();
         }
         return listToReturn;
+    }
+
+    public void deleteTask(int taskID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("DELETE FROM tasks WHERE (idtasks = ?)");
+
+            ps.setInt(1, taskID);
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -67,8 +67,9 @@ public class ProjectController {
 
     @PostMapping("deleteTask")
     public String deleteTask (HttpServletRequest SPrequest){
-        String spTaskID = SPrequest.getParameter("test");
-        System.out.println(spTaskID);
+        int taskID = Integer.parseInt(SPrequest.getParameter("test"));
+
+        pr.deleteTask(taskID);
 
         return "redirect:/project";
     }
