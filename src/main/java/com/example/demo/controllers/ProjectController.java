@@ -25,7 +25,6 @@ public class ProjectController {
         ArrayList<SubProject> spList = pr.getSubProjects((int) projectRequest.getSession().getAttribute("projectID"));
         ArrayList<SubProject> spTask = pr.getEntireSubProject1((int) projectRequest.getSession().getAttribute("projectID"));
 
-
         model.addAttribute("spTask", spTask);
         model.addAttribute("taskList", taskList);
         model.addAttribute("spList", spList);

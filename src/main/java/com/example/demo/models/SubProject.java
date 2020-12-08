@@ -94,8 +94,6 @@ public class SubProject {
         this.tasks = tasks;
     }
 
-
-
     @Override
     public String toString() {
         return "SubProject{" +

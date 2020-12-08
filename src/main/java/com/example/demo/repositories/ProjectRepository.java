@@ -134,7 +134,6 @@ public class ProjectRepository {
 
     private SubProject getSubProject( int subProjectID, List<SubProject> subProjects) {
         return subProjects.stream()
-                // change 'p.getSubProjectID()' into 'p.subProjectID' if you don't have a getter
                 .filter( p -> p.getSubProjectID() == subProjectID )
                 .findFirst()
                 .orElse( null );
@@ -144,7 +143,7 @@ public class ProjectRepository {
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName\n" +
+            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate\n" +
                     "from subprojects \n" +
                     "inner join tasks \n" +
                     "on subprojects.idsubprojects = tasks.subprojectid \n" +
@@ -159,11 +158,10 @@ public class ProjectRepository {
                 SubProject subProject = getSubProject(rs.getInt(1), listToReturn);
                 if( subProject == null ){
                     ArrayList<Task> listOfTask = new ArrayList<>();
-                    listOfTask.add(new Task(rs.getString(3)));
+                    listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7))));
                     listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask));
                 }else{
-                    subProject.getTasks().add( new Task(rs.getString(3) ));
-                    // or subProject.tasks.add( new Task(rs.getString(3) ) if you don't have a getter
+                    subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7))));
                 }
             }
 
