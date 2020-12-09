@@ -135,6 +135,9 @@ th{
 .showSPTasks{
     width: 75%;
     margin: auto;
+}
+
+.innerSpTasks{
     margin-top: 20px;
 }
 
@@ -147,6 +150,7 @@ th{
     border: none;
     background: white;
 }
+
 
 
 

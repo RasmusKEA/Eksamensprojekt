@@ -75,9 +75,9 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row rowtest">
         <div th:if=${!#lists.isEmpty(spTask)} class="showSPTasks">
-            <div th:each="spTask : ${spTask}">
+            <div th:each="spTask : ${spTask}" class="innerSpTasks">
                 <table class="outerTable">
                     <tr>
                         <th><span th:text="${spTask.subProjectName}"></span> <br> <span>start date</span> <br> <span>end date</span> <br> <span>293 hours</span></th>
