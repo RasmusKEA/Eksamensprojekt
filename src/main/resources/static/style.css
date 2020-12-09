@@ -97,8 +97,7 @@
 
 
 table{
-    width: 85%;
-    margin-top: 10px;
+    width: 100%;
 }
 
 tr:nth-child(even){
@@ -116,7 +115,11 @@ th, test{
     margin: auto;
     margin-top: 10px;
     table-layout: fixed;
-    width: 85%;
+}
+
+.taskTable{
+    width: 75%;
+    margin: auto;
 }
 
 .dashBoardBtn{
@@ -127,6 +130,21 @@ th, test{
     width: 20px;
     height: 20px;
     margin-top: 5px;
+}
+
+.showSPTasks{
+    width: 75%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.outerTable{
+    border: none;
+    background: #00B2EE
+}
+
+.innerTable{
+    border: none;
 }
 
 
