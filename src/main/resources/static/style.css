@@ -104,7 +104,7 @@ tr:nth-child(even){
     background-color: #f2f2f2;
 }
 
-th, test{
+th{
     color: white;
     border-collapse: collapse;
     background: #00B2EE;
@@ -145,6 +145,7 @@ th, test{
 
 .innerTable{
     border: none;
+    background: white;
 }
 
 
