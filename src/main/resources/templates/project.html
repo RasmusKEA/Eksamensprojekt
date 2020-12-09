@@ -81,7 +81,8 @@
                 <table class="outerTable">
                     <tr>
                         <th><span th:text="${spTask.subProjectName}"></span> <br> <span>start date</span> <br> <span>end date</span> <br> <span>293 hours</span></th>
-                        <th>delete</th>
+                        <input type="hidden" th:value="${spTask.subProjectID}" name="test">
+                        <th><input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></th>
                         <td>
                             <table class="innerTable">
                                 <tr>
