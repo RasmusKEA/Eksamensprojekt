@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.models.SubProject;
 import com.example.demo.models.Task;
 import com.example.demo.repositories.ProjectRepository;
+import com.example.demo.repositories.SubProjectRepository;
+import com.example.demo.repositories.TaskRepository;
 import com.example.demo.services.ProjectServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +19,15 @@ import java.util.ArrayList;
 public class ProjectController {
     ProjectRepository pr = new ProjectRepository();
     ProjectServices ps = new ProjectServices();
+    TaskRepository tr = new TaskRepository();
+    SubProjectRepository spr = new SubProjectRepository();
 
     @GetMapping("project")
     public String project(Model model, HttpServletRequest projectRequest){
 
-        ArrayList<Task> taskList = pr.getTasksByProjectID((int) projectRequest.getSession().getAttribute("projectID"));
-        ArrayList<SubProject> spList = pr.getSubProjects((int) projectRequest.getSession().getAttribute("projectID"));
-        ArrayList<SubProject> spTask = pr.getEntireSubProject1((int) projectRequest.getSession().getAttribute("projectID"));
+        ArrayList<Task> taskList = tr.getTasksByProjectID((int) projectRequest.getSession().getAttribute("projectID"));
+        ArrayList<SubProject> spList = spr.getSubProjects((int) projectRequest.getSession().getAttribute("projectID"));
+        ArrayList<SubProject> spTask = spr.getEntireSubProject1((int) projectRequest.getSession().getAttribute("projectID"));
 
         model.addAttribute("spTask", spTask);
         model.addAttribute("taskList", taskList);
@@ -50,7 +54,14 @@ public class ProjectController {
         LocalDate dateObj = LocalDate.parse(startDate);
         String endDate = ps.calcEndDate(dateObj, workhours);
 
-        pr.createTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate, subProjectID);
+
+        if(subProjectID != 0){
+            tr.createSPTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate, subProjectID);
+        }else{
+            tr.createTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate);
+        }
+
+
 
         return "redirect:/project";
     }
@@ -60,16 +71,23 @@ public class ProjectController {
         String subProjectName = SPrequest.getParameter("subProjectName");
         int projectID = (int) projectRequest.getSession().getAttribute("projectID");
 
-        pr.createSubProject(subProjectName, projectID);
+        spr.createSubProject(subProjectName, projectID);
 
         return "redirect:/project";
     }
 
     @PostMapping("deleteTask")
     public String deleteTask (HttpServletRequest SPrequest){
-        int taskID = Integer.parseInt(SPrequest.getParameter("test"));
+        int taskID = Integer.parseInt(SPrequest.getParameter("taskToDelete"));
+        tr.deleteTask(taskID);
 
-        pr.deleteTask(taskID);
+        return "redirect:/project";
+    }
+
+    @PostMapping("deleteSPTask")
+    public String deleteSPTask (HttpServletRequest SPrequest){
+        int spTaskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
+        tr.deleteSPTask(spTaskID);
 
         return "redirect:/project";
     }
