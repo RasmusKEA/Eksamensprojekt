@@ -78,6 +78,8 @@
     border-style: hidden;
     size: auto;
     width: 100%;
+    float: left;
+    text-align: left;
 }
 
 .createTasks, .createSubProject{
@@ -156,6 +158,12 @@ th{
     height: 20px;
     margin-top: 5px;
 }
+
+.editProjectName{
+    width: 20px;
+    height: 20px;
+}
+
 
 
 

@@ -78,4 +78,16 @@ public class ProjectRepository {
         }
     }
 
+    public void updateProjectName(String projectName, int projectID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE projects SET projectname = ? WHERE (idprojects = ?)");
+            ps.setString(1, projectName);
+            ps.setInt(2, projectID);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

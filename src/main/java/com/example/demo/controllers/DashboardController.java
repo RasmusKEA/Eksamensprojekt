@@ -58,4 +58,15 @@ public class DashboardController {
         return "redirect:/dashboard";
     }
 
+
+    @PostMapping("editProjName")
+    public String editProjName(HttpServletRequest  editRequest){
+        ProjectRepository pr = new ProjectRepository();
+        String newProjectName = editRequest.getParameter("projectName");
+        int projectID = Integer.parseInt(editRequest.getParameter("projectID"));
+        pr.updateProjectName(newProjectName, projectID);
+
+        return "redirect:/dashboard";
+    }
+
 }
