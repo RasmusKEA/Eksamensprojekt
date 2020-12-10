@@ -82,8 +82,10 @@
                 <table class="outerTable">
                     <tr>
                         <th><span th:text="${spTask.subProjectName}"></span> <br> <span th:text="${spTask.startDate}"></span> <br> <span th:text="${spTask.endDate}"></span></th>
-                        <input type="hidden" th:value="${spTask.subProjectID}" name="test">
+                        <form action="/deleteSP" method="post">
+                        <input type="hidden" th:value="${spTask.subProjectID}" name="spToDelete">
                         <th><input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></th>
+                        </form>
                         <td>
                             <table class="innerTable">
                                 <tr>

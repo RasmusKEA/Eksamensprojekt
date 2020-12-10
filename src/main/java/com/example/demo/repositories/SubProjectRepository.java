@@ -121,4 +121,17 @@ public class SubProjectRepository {
             e.printStackTrace();
         }
     }
+
+    public void deleteSubProject(int subProjectID){
+
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("DELETE FROM subprojects WHERE idsubprojects = ?");
+            ps.setInt(1, subProjectID);
+            ps.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

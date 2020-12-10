@@ -89,13 +89,13 @@ public class ProjectController {
         return "redirect:/project";
     }
 
-    @PostMapping("deleteProjectPost")
-    public String deleteProject(HttpServletRequest request){
-        int projectID = Integer.parseInt(request.getParameter("deleteID"));
-        pr.deleteProject(projectID);
 
-        return "redirect:/dashboard";
+    @PostMapping("deleteSP")
+    public String deleteSP(HttpServletRequest request){
+        int subProjectID = Integer.parseInt(request.getParameter("spToDelete"));
+        spr.deleteSubProject(subProjectID);
+
+        return "redirect:/project";
     }
-
 
 }
