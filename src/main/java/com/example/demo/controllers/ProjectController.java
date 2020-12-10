@@ -43,8 +43,6 @@ public class ProjectController {
         int taskEmployees = Integer.parseInt(taskRequest.getParameter("taskEmployees"));
         int projectID = (int) projectRequest.getSession().getAttribute("projectID");
         String startDate = taskRequest.getParameter("startDate");
-        String test = taskRequest.getParameter("subprojects");
-        System.out.println(test);
         int subProjectID = Integer.parseInt(taskRequest.getParameter("subprojects"));
 
         double calcWorkhours = Math.ceil(((double) taskHours/(double) taskEmployees)/8.0);
@@ -56,12 +54,11 @@ public class ProjectController {
 
 
         if(subProjectID != 0){
+            spr.updateDates(startDate, endDate, subProjectID);
             tr.createSPTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate, subProjectID);
         }else{
             tr.createTasks(taskName, taskHours, taskEmployees, projectID, startDate, endDate);
         }
-
-
 
         return "redirect:/project";
     }

@@ -35,4 +35,12 @@ public class ProjectServices {
 
         return result.toString();
     }
+
+    public LocalDate reverseDate(String date){
+
+
+        LocalDate localDate = LocalDate.parse(date);
+
+        return localDate;
+    }
 }

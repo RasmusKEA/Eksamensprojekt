@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SubProject {
     private int projctID, subProjectHours, subProjectEmployees, subProjectID;
-    private String subProjectName;
+    private String subProjectName, startDate, endDate;
     private Task task;
     private ArrayList<Task> tasks;
 
@@ -30,12 +30,15 @@ public class SubProject {
     public SubProject(String subProjectName, int subProjectID){
         this.subProjectName = subProjectName;
         this.subProjectID = subProjectID;
+
     }
 
-    public SubProject(int subProjectID, String subProjectName, ArrayList<Task> tasks){
+    public SubProject(int subProjectID, String subProjectName, ArrayList<Task> tasks, String startDate, String endDate){
         this.subProjectName = subProjectName;
         this.subProjectID = subProjectID;
         this.tasks = tasks;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public int getProjctID() {
@@ -84,6 +87,22 @@ public class SubProject {
 
     public void setTask(Task task) {
         this.task = task;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public ArrayList<Task> getTasks() {

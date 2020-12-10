@@ -78,9 +78,10 @@
     <div class="row rowtest">
         <div th:if=${!#lists.isEmpty(spTask)} class="showSPTasks">
             <div th:each="spTask : ${spTask}" class="innerSpTasks">
+                <div>
                 <table class="outerTable">
                     <tr>
-                        <th><span th:text="${spTask.subProjectName}"></span> <br> <span>start date</span> <br> <span>end date</span> <br> <span>293 hours</span></th>
+                        <th><span th:text="${spTask.subProjectName}"></span> <br> <span th:text="${spTask.startDate}"></span> <br> <span th:text="${spTask.endDate}"></span></th>
                         <input type="hidden" th:value="${spTask.subProjectID}" name="test">
                         <th><input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></th>
                         <td>

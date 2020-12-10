@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Controller
 public class IndexController {
     UserRepository ur = new UserRepository();
-    ProjectRepository pr = new ProjectRepository();
+
     @GetMapping("/")
     public String index(){
         return "index";
@@ -33,7 +33,7 @@ public class IndexController {
     }
 
 
-
+    //Post mapping for når man trykker på knappen "Register" på register.html
     @PostMapping("registerPost")
     public String registerPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
         UserServices us = new UserServices();

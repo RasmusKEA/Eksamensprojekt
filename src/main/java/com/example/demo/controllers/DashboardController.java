@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 @Controller
 public class DashboardController {
-    UserRepository ur = new UserRepository();
     ProjectRepository pr = new ProjectRepository();
 
+    //Get Mappingen til dashboard.html. Tilføjer en liste af projekter til viewet.
     @GetMapping("dashboard")
     public String dashboard(Model model){
         ArrayList<Project> listOfProjects = pr.getProjectsFromDB();
@@ -28,6 +28,8 @@ public class DashboardController {
         return "dashboard";
     }
 
+    //Post mappingen når man trykker på "CREATE"-project knappen. Denne kalder createNewProject() i ProjectRepository
+    //Og giver user input projekt navnet med som parameter
     @PostMapping("createPost")
     public String createPost(HttpServletRequest projectRequest){
         String projectName = projectRequest.getParameter("createProjectName");
@@ -35,8 +37,10 @@ public class DashboardController {
         return "redirect:/dashboard";
     }
 
+    //Post mappingen når man vælger et project og trykker "OPEN".
+    //Tilføjer projectID til Session sådan at man kan bruge projectID'et i project view
     @PostMapping("projectPost")
-    public String projectPost(HttpServletRequest projectRequest, Model model){
+    public String projectPost(HttpServletRequest projectRequest){
         String projectIDString = (projectRequest.getParameter("projectID"));
         int projectID = Integer.parseInt(projectIDString.substring(13));
 

@@ -8,6 +8,7 @@ import com.example.demo.services.ProjectServices;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,22 +28,10 @@ public class SubProjectRepository {
         }
     }
 
-    public void createDefaultSubProject(String subProjectName, int projectID){
-        try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO subprojects (idsubprojects, subprojectName, projectid) VALUES (0, ?, ?)");
-            ps.setString(1, subProjectName);
-            ps.setInt(2, projectID);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public ArrayList<SubProject> getSubProjects(int projectID){
         ArrayList<SubProject> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT subprojectname, idsubprojects FROM subprojects WHERE projectid = ? AND idsubprojects != 0");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT subprojectname, idsubprojects, SPstartDate, SPendDate FROM subprojects WHERE projectid = ? AND idsubprojects != 0");
 
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
@@ -68,7 +57,7 @@ public class SubProjectRepository {
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate, idsptasks\n" +
+            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate, idsptasks, SPstartDate, SPendDate\n" +
                     "from subprojects \n" +
                     "inner join sptasks \n" +
                     "on subprojects.idsubprojects = sptasks.subprojectid \n" +
@@ -84,7 +73,7 @@ public class SubProjectRepository {
                 if( subProject == null ){
                     ArrayList<Task> listOfTask = new ArrayList<>();
                     listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
-                    listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask));
+                    listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask, projectServices.formatDate(rs.getString(9)), projectServices.formatDate(rs.getString(10))));
                 }else{
                     subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
                 }
@@ -94,5 +83,44 @@ public class SubProjectRepository {
             e.printStackTrace();
         }
         return listToReturn;
+    }
+
+    public void updateDates(String startDate, String endDate, int subProjectID){
+        try {
+            //if startDate < dbStartDate == UPDATE
+            //if endDate > dbEndDate == update
+
+            System.out.println(projectServices.reverseDate(startDate));
+
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT SPstartDate, SPendDate FROM subprojects WHERE idsubprojects = ?");
+            ps.setInt(1, subProjectID);
+
+            ResultSet rs = ps.executeQuery();
+
+
+                String SPstartDate = rs.getString(1).substring(0, 10);
+                String SPendDate = rs.getString(2).substring(0, 10);
+                System.out.println(projectServices.reverseDate(SPstartDate));
+
+                if (projectServices.reverseDate(startDate).isBefore(projectServices.reverseDate(SPstartDate))) {
+                    System.out.println("ja datoen er tidligere end den i db");
+                    ps = connection.establishConnection().prepareStatement("UPDATE subprojects SET SPstartDate = ? WHERE (idsubprojects = ?)");
+                    ps.setString(1, startDate);
+                    ps.setInt(2, subProjectID);
+                    ps.executeUpdate();
+                }
+
+                if (projectServices.reverseDate(endDate).isAfter(projectServices.reverseDate(SPendDate))) {
+                    System.out.println("ja datoen er senere end den i db");
+                    ps = connection.establishConnection().prepareStatement("UPDATE subprojects SET SPendDate = ? WHERE (idsubprojects = ?)");
+                    ps.setString(1, endDate);
+                    ps.setInt(2, subProjectID);
+                    ps.executeUpdate();
+                }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
