@@ -34,7 +34,12 @@
                     <input type="hidden" th:value="${projectNames.projectID}" name="deleteID">
                     <input type="image" src="delete.png"  alt="Submit" align="right" class="deleteProject">
                 </form>
-
+                <form action="/editProjName" method="post">
+                    <input type="hidden" name="projectID" th:value="${projectNames.projectID}">
+                    <input type="hidden" id="oldName" th:value="${projectNames.projectName}">
+                    <input type="hidden" id="newName" name="projectName">
+                    <input type="image" src="edit.png"  alt="Submit" onclick="change_text()" align="right" class="editProject">
+                </form>
                 <form action="/projectPost" method="post">
                     <input class="projectInfo" name="projectID" type="text" th:value="'Project No.: ' + ${projectNames.projectID}" readonly="readonly">
                     <input class="projectInfo"  type="text"  th:value="'Project name: ' + ${projectNames.projectName}" readonly="readonly">
@@ -42,12 +47,7 @@
                     <input class="projectInfo" type="text" th:value="${projectNames.projectStartDate}  + ' - ' + ${projectNames.projectEndDate}" readonly="readonly">
                     <input type="submit" value="OPEN" class="openProject">
                 </form>
-                <form action="/editProjName" method="post">
-                    <input type="hidden" name="projectID" th:value="${projectNames.projectID}">
-                    <input type="hidden" id="oldName" th:value="${projectNames.projectName}">
-                    <input type="hidden" id="newName" name="projectName">
-                    <button onclick="change_text()">Click me</button>
-                </form>
+
             </div>
         </div>
     </div>

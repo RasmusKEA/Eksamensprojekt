@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
 }
 
-.regButton, .loginButton, .registerbutton, .resetbutton, .loginSubmit, .openProject{
+.regButton, .loginButton, .registerbutton, .resetbutton, .loginSubmit, .openProject, .createProjectButton{
     /*THIS STYLING GOES FOR EVERY BUTTON*/
     color: white;
     border-radius: 100px;
@@ -23,6 +23,12 @@
     border: #00B2EE;
     width: 140px;
     height: 40px;
+}
+
+
+.createProjectButton, .openProject{
+    width: 140px;
+    height: 30px;
 }
 
 .regButton, .loginButton{
@@ -153,16 +159,23 @@ th{
     background: white;
 }
 
-.deleteProject{
+.deleteProject, .editProject{
     width: 20px;
     height: 20px;
-    margin-top: 5px;
+    margin-top: 2px;
+    display: inline-block;
 }
+
+.editProject{
+    margin-right: 5px;
+}
+
 
 .editProjectName{
     width: 20px;
     height: 20px;
 }
+
 
 
 
