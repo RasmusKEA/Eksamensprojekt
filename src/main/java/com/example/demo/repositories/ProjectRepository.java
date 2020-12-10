@@ -66,4 +66,16 @@ public class ProjectRepository {
         return listToReturn;
     }
 
+    public void deleteProject(int projectID){
+
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("DELETE FROM projects WHERE idprojects = ?");
+            ps.setInt(1, projectID);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }

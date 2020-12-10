@@ -30,6 +30,10 @@
     <div class="container">
         <div class="projectBrowse">
             <div class="projects" th:each="projectNames : ${listOfProjects}">
+                <form action="deleteProjectPost" method="post">
+                    <input type="hidden" th:value="${projectNames.projectID}" name="deleteID">
+                <input type="image" src="delete.png"  alt="Submit" align="right" class="deleteProject">
+                </form>
                 <form action="/projectPost" method="post">
                     <input class="projectInfo" name="projectID" type="text" th:value="'Project No.: ' + ${projectNames.projectID}" readonly="readonly">
                     <input class="projectInfo" type="text"  th:value="'Project name: ' + ${projectNames.projectName}" readonly="readonly">
@@ -37,6 +41,7 @@
                     <input class="projectInfo" type="text" th:value="${projectNames.projectStartDate}  + ' - ' + ${projectNames.projectEndDate}" readonly="readonly">
                     <input type="submit" value="OPEN" class="openProject">
                 </form>
+
             </div>
         </div>
     </div>
