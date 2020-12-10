@@ -97,13 +97,12 @@ public class SubProjectRepository {
 
             ResultSet rs = ps.executeQuery();
 
-
+                rs.next();
                 String SPstartDate = rs.getString(1).substring(0, 10);
                 String SPendDate = rs.getString(2).substring(0, 10);
                 System.out.println(projectServices.reverseDate(SPstartDate));
 
                 if (projectServices.reverseDate(startDate).isBefore(projectServices.reverseDate(SPstartDate))) {
-                    System.out.println("ja datoen er tidligere end den i db");
                     ps = connection.establishConnection().prepareStatement("UPDATE subprojects SET SPstartDate = ? WHERE (idsubprojects = ?)");
                     ps.setString(1, startDate);
                     ps.setInt(2, subProjectID);
@@ -111,7 +110,6 @@ public class SubProjectRepository {
                 }
 
                 if (projectServices.reverseDate(endDate).isAfter(projectServices.reverseDate(SPendDate))) {
-                    System.out.println("ja datoen er senere end den i db");
                     ps = connection.establishConnection().prepareStatement("UPDATE subprojects SET SPendDate = ? WHERE (idsubprojects = ?)");
                     ps.setString(1, endDate);
                     ps.setInt(2, subProjectID);
