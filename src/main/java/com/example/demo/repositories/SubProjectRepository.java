@@ -93,8 +93,6 @@ public class SubProjectRepository {
             //if startDate < dbStartDate == UPDATE
             //if endDate > dbEndDate == update
 
-            System.out.println(projectServices.reverseDate(startDate));
-
             PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT SPstartDate, SPendDate FROM subprojects WHERE idsubprojects = ?");
             ps.setInt(1, subProjectID);
 
@@ -103,7 +101,6 @@ public class SubProjectRepository {
                 rs.next();
                 String SPstartDate = rs.getString(1).substring(0, 10);
                 String SPendDate = rs.getString(2).substring(0, 10);
-                System.out.println(projectServices.reverseDate(SPstartDate));
 
                 if (projectServices.reverseDate(startDate).isBefore(projectServices.reverseDate(SPstartDate))) {
                     ps = connection.establishConnection().prepareStatement("UPDATE subprojects SET SPstartDate = ? WHERE (idsubprojects = ?)");
