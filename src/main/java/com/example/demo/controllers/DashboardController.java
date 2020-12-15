@@ -1,15 +1,11 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Project;
-import com.example.demo.models.Task;
-import com.example.demo.models.User;
 import com.example.demo.repositories.ProjectRepository;
-import com.example.demo.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,6 +46,7 @@ public class DashboardController {
         return "redirect:/project";
     }
 
+    //post mapping til slettelse af et project
     @PostMapping("deleteProjectPost")
     public String deleteProject(HttpServletRequest request){
         int projectID = Integer.parseInt(request.getParameter("deleteID"));
@@ -58,7 +55,7 @@ public class DashboardController {
         return "redirect:/dashboard";
     }
 
-
+    //postmapping til ændring af project name
     @PostMapping("editProjName")
     public String editProjName(HttpServletRequest  editRequest){
         ProjectRepository pr = new ProjectRepository();

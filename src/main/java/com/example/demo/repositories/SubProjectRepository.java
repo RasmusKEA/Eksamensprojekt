@@ -4,11 +4,9 @@ import com.example.demo.models.SubProject;
 import com.example.demo.models.Task;
 import com.example.demo.services.DBConnection;
 import com.example.demo.services.ProjectServices;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,7 @@ public class SubProjectRepository {
     DBConnection connection = new DBConnection();
     ProjectServices projectServices = new ProjectServices();
 
+    //opretter et subproject i databasen
     public void createSubProject(String subProjectName, int projectID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO subprojects (subprojectName, projectid) VALUES (?, ?)");
@@ -28,6 +27,7 @@ public class SubProjectRepository {
         }
     }
 
+    //returnerer en liste af subprojects hentet i databasen
     public ArrayList<SubProject> getSubProjects(int projectID){
         ArrayList<SubProject> listToReturn = new ArrayList<>();
         try {
@@ -46,6 +46,7 @@ public class SubProjectRepository {
         return listToReturn;
     }
 
+    //kører igennem en liste af subprojects og tjekker om dette subProjectID allerede er i listen
     private SubProject getSubProject( int subProjectID, List<SubProject> subProjects) {
         return subProjects.stream()
                 .filter( p -> p.getSubProjectID() == subProjectID )
@@ -53,7 +54,8 @@ public class SubProjectRepository {
                 .orElse( null );
     }
 
-    public ArrayList<SubProject> getEntireSubProject1(int projectID){
+    //henter alle subprojects og tilknytter dem en liste af de tasks der hører til hvert subproject
+    public ArrayList<SubProject> getEntireSubProject(int projectID){
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
@@ -85,6 +87,7 @@ public class SubProjectRepository {
         return listToReturn;
     }
 
+    //opdaterer start og slut datoer til subprojects
     public void updateDates(String startDate, String endDate, int subProjectID){
         try {
             //if startDate < dbStartDate == UPDATE
@@ -122,6 +125,7 @@ public class SubProjectRepository {
         }
     }
 
+    //sletter et subproject
     public void deleteSubProject(int subProjectID){
 
         try {

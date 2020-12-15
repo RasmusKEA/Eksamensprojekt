@@ -9,6 +9,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 public class UserRepository {
 
+    //gemmer en brugers oplysninger i databasen
     public boolean createUser(String fullname, String email, String password){
         DBConnection connection = new DBConnection();
 
@@ -35,6 +36,7 @@ public class UserRepository {
         return true;
     }
 
+    //tjekker at email og password stemmer hvad der er i databasen
     public boolean loginUser(String email, String password){
         DBConnection connection = new DBConnection();
 

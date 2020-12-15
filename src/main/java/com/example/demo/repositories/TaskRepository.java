@@ -13,6 +13,7 @@ public class TaskRepository {
     DBConnection connection = new DBConnection();
     ProjectServices projectServices = new ProjectServices();
 
+    //opretter en task i databasen
     public void createTasks(String taskName, int taskHours, int taskEmployees, int projectID, String startDate, String endDate){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO tasks (taskName, taskHours, taskEmployees, startDate, endDate, projectid) values (?, ?, ?, ?, ?, ?)");
@@ -30,6 +31,7 @@ public class TaskRepository {
         }
     }
 
+    //opretter en subproject task i databasen
     public void createSPTasks(String taskName, int taskHours, int taskEmployees, int projectID, String startDate, String endDate, int subProjectID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("INSERT INTO sptasks (taskName, taskHours, taskEmployees, startDate, endDate, projectid, subprojectid) values (?, ?, ?, ?, ?, ?, ?)");
@@ -48,6 +50,7 @@ public class TaskRepository {
         }
     }
 
+    //sletter en task i databasen
     public void deleteTask(int taskID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("DELETE FROM tasks WHERE (idtasks = ?)");
@@ -61,6 +64,7 @@ public class TaskRepository {
         }
     }
 
+    //sletter en subproject task i databasen
     public void deleteSPTask(int spTaskID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("DELETE FROM sptasks WHERE (idsptasks = ?)");
@@ -74,6 +78,7 @@ public class TaskRepository {
         }
     }
 
+    //laver en liste af alle tasks i databasen
     public ArrayList<Task> getTasksByProjectID(int projectID){
 
         ArrayList<Task> listToReturn = new ArrayList<>();

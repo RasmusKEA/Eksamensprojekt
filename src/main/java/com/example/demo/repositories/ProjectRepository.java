@@ -1,23 +1,18 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.Project;
-import com.example.demo.models.SubProject;
-import com.example.demo.models.Task;
 import com.example.demo.services.DBConnection;
 import com.example.demo.services.ProjectServices;
-
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProjectRepository {
     DBConnection connection = new DBConnection();
     ProjectServices projectServices = new ProjectServices();
 
+    //opretter et project i databasen
     public void createNewProject(String projectName){
         try {
             SubProjectRepository spr = new SubProjectRepository();
@@ -30,9 +25,8 @@ public class ProjectRepository {
         }
     }
 
+    //Returnerer en liste af alle projektnavne.
     public ArrayList<Project> getProjectsFromDB(){
-        //Returnerer en liste af alle projektnavne.
-        //TODO Exception handling hvis der ikke er oprettet nogle projekter endnu
         ArrayList<Project> listToReturn = new ArrayList<>();
 
         try {
@@ -66,6 +60,7 @@ public class ProjectRepository {
         return listToReturn;
     }
 
+    //sletter et project i databasen
     public void deleteProject(int projectID){
 
         try {
@@ -78,6 +73,7 @@ public class ProjectRepository {
         }
     }
 
+    //opdaterer projectname i databasen
     public void updateProjectName(String projectName, int projectID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE projects SET projectname = ? WHERE (idprojects = ?)");

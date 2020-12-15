@@ -22,12 +22,14 @@ public class ProjectController {
     TaskRepository tr = new TaskRepository();
     SubProjectRepository spr = new SubProjectRepository();
 
+    //getmapping for project.htm
+    //tilføjer en liste af hhv. tasks, subprojects og subproject tasks til viewet
     @GetMapping("project")
     public String project(Model model, HttpServletRequest projectRequest){
 
         ArrayList<Task> taskList = tr.getTasksByProjectID((int) projectRequest.getSession().getAttribute("projectID"));
         ArrayList<SubProject> spList = spr.getSubProjects((int) projectRequest.getSession().getAttribute("projectID"));
-        ArrayList<SubProject> spTask = spr.getEntireSubProject1((int) projectRequest.getSession().getAttribute("projectID"));
+        ArrayList<SubProject> spTask = spr.getEntireSubProject((int) projectRequest.getSession().getAttribute("projectID"));
 
         model.addAttribute("spTask", spTask);
         model.addAttribute("taskList", taskList);
@@ -35,6 +37,7 @@ public class ProjectController {
         return "project";
     }
 
+    //post mapping til når man opretter en task. kalder calcWorkHours der udgør en slutdato for en task
     @PostMapping("createTaskPost")
     public String createTaskPost(HttpServletRequest taskRequest, HttpServletRequest projectRequest){
 
@@ -63,6 +66,7 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    //post mapping til oprettelse af et subproject
     @PostMapping("createSubProjectPost")
     public String createSubProjectPost(HttpServletRequest SPrequest, HttpServletRequest projectRequest){
         String subProjectName = SPrequest.getParameter("subProjectName");
@@ -73,6 +77,7 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    //post mapping til slettelse af en task
     @PostMapping("deleteTask")
     public String deleteTask (HttpServletRequest SPrequest){
         int taskID = Integer.parseInt(SPrequest.getParameter("taskToDelete"));
@@ -81,6 +86,7 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    //post mapping til slettelse af en subproject task
     @PostMapping("deleteSPTask")
     public String deleteSPTask (HttpServletRequest SPrequest){
         int spTaskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
@@ -89,7 +95,7 @@ public class ProjectController {
         return "redirect:/project";
     }
 
-
+    //post mapping til slettelse af et subproject
     @PostMapping("deleteSP")
     public String deleteSP(HttpServletRequest request){
         int subProjectID = Integer.parseInt(request.getParameter("spToDelete"));

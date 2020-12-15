@@ -1,18 +1,12 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Project;
-import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserServices;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 @Controller
 public class IndexController {
@@ -52,6 +46,8 @@ public class IndexController {
         return "redirect:/register";
     }
 
+    //post mapping for når man trykker på "login" knappen efter at have udfyldt login credentials
+    //tjekker at disse credentials matcher med hvad der er i databasen
     @PostMapping("loginPost")
     public String loginPost(HttpServletRequest request, RedirectAttributes redirectAttributes){
         String email = request.getParameter("email");
