@@ -38,11 +38,14 @@ public class IndexController {
         if(us.registerPasswordMatch(password1, password2)){
             boolean succCreate = ur.createUser(request.getParameter("fullname"), request.getParameter("email"), password1);
             if(succCreate){
-                redirectAttributes.addFlashAttribute("createMessage", "Din konto er nu blevet oprettet og kan nu logge ind");
+                redirectAttributes.addFlashAttribute("createMessage", "Your user has been created, feel free to login");
                 return "redirect:/login";
             }
+        }else if(!us.registerPasswordMatch(password1, password2)){
+            redirectAttributes.addFlashAttribute("failCreateMsg", "Passwords did not match");
+            return "redirect:/register";
         }
-        redirectAttributes.addFlashAttribute("failCreateMsg", "Email er allerede i systemet");
+        redirectAttributes.addFlashAttribute("failCreateMsg", "Email is already in use");
         return "redirect:/register";
     }
 
@@ -56,7 +59,7 @@ public class IndexController {
         if(correctLogin){
             return "redirect:/dashboard";
         }
-        redirectAttributes.addFlashAttribute("loginMessage", "Forkert email eller kodeord. Prøv igen");
+        redirectAttributes.addFlashAttribute("loginMessage", "Wrong email and/or password. Try again");
         return "redirect:/login";
     }
 }
