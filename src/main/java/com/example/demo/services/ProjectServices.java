@@ -35,7 +35,6 @@ public class ProjectServices {
     //Laver LocalDate objekt af dato sådan at isBefore og isAfter kan bruges til at sammenligne datoer
     public LocalDate reverseDate(String date){
         LocalDate localDate = LocalDate.parse(date);
-
         return localDate;
     }
 }
