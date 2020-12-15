@@ -68,7 +68,7 @@
                         <td th:text="${task.taskEmployees}"></td>
                         <td th:text="${task.startDate}"></td>
                         <td th:text="${task.endDate}"> </td>
-                        <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></td>
+                        <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn" onclick="return confirm('Are you sure that you want to delete this task?')"></td>
                     </form>
                 </tr>
             </table>
@@ -84,7 +84,7 @@
                         <th><span th:text="${spTask.subProjectName}"></span> <br> <span th:text="${spTask.startDate}"></span> <br> <span th:text="${spTask.endDate}"></span></th>
                         <form action="/deleteSP" method="post">
                         <input type="hidden" th:value="${spTask.subProjectID}" name="spToDelete">
-                        <th><input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></th>
+                        <th><input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn" onclick="return confirm('Are you sure that you want to delete this Subproject?')"></th>
                         </form>
                         <td>
                             <table class="innerTable">
@@ -104,7 +104,7 @@
                                     <td th:text="${spTask1.taskEmployees}"></td>
                                     <td th:text="${spTask1.startDate}"></td>
                                     <td th:text="${spTask1.endDate}"> </td>
-                                    <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn"></td>
+                                    <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn" onclick="return confirm('Are you sure that you want to delete this task?')"></td>
                                     </form>
                                 </tr>
                             </table>
