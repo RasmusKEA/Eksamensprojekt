@@ -26,8 +26,8 @@
         <form action ="/registerPost" method="post">
           <input type="text" class="regName" id="fullname" name="fullname" placeholder="Full name" required pattern=".*\S.*">
           <input type="email" class="regMail" id="email" name="email" placeholder="Email" required>
-          <input type="password" class="regPw" id="password1" name="password1" placeholder="Password" required>
-          <input type="password" class="regPw" id="password2" name="password2" placeholder="Password" required>
+          <input type="password" class="regPw" id="password1" name="password1" placeholder="Password" required pattern=".*\S.*">
+          <input type="password" class="regPw" id="password2" name="password2" placeholder="Password" required pattern=".*\S.*">
           <input type="reset" value="RESET" class="resetbutton">
           <input type="submit" value="REGISTER" class="registerbutton">
         </form>
