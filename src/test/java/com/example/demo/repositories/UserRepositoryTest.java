@@ -12,7 +12,7 @@ class UserRepositoryTest {
         UserRepository ur = new UserRepository();
 
         //act
-        boolean result = ur.createUser("Test User", "test@email.dk", "password");
+        boolean result = ur.createUser("Test User", "test@test.dk", "password");
 
         //assert
         assertEquals(true, result);
