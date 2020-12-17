@@ -22,7 +22,7 @@
 <div class="container">
     <div class="createProject">
         <form action="/createPost" method="post">
-            <input type="text" class="createProjectName" name="createProjectName" placeholder="New projects name.." required>
+            <input type="text" class="createProjectName" name="createProjectName" placeholder="New projects name.." required pattern=".*\S.*">
             <input type="submit" value="CREATE" class="createProjectButton">
         </form>
     </div>

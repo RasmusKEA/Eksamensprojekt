@@ -41,7 +41,7 @@
     <div class="row">
         <div class="createSubProject">
             <form action="createSubProjectPost" method="post">
-                <input type="text" name="subProjectName" placeholder="Sub project name" required>
+                <input type="text" name="subProjectName" placeholder="Sub project name" required pattern=".*\S.*">
                 <input type="submit" value="CREATE SUB PROJECT" class="createSubSubmit">
             </form>
         </div>
