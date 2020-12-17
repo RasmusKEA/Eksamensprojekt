@@ -48,7 +48,15 @@ public class ProjectController {
         String startDate = taskRequest.getParameter("startDate");
         int subProjectID = Integer.parseInt(taskRequest.getParameter("subprojects"));
 
-        double calcWorkhours = Math.ceil(((double) taskHours/(double) taskEmployees)/8.0);
+        double calcWorkhours = 0;
+
+        if(taskEmployees == 0){
+            calcWorkhours = Math.ceil(((double) taskHours/1.0)/8.0);
+        }else{
+            calcWorkhours = Math.ceil(((double) taskHours/(double) taskEmployees)/8.0);
+        }
+
+
         int workhours = (int) calcWorkhours;
 
 

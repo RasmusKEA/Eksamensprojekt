@@ -31,8 +31,8 @@
                 </select>
 
                 <input type="text" name="taskName" placeholder="Task name" required>
-                <input type="number" name="taskHours" placeholder="Amount of hours" required>
-                <input type="number" name="taskEmployees" placeholder="Amount of employees" required>
+                <input type="number" name="taskHours" placeholder="Amount of hours" required min="0">
+                <input type="number" name="taskEmployees" placeholder="Amount of employees" required min="0">
                 <input type="date" name="startDate" required>
                 <input type="submit" value="CREATE TASK" class="createTaskSubmit">
             </form>
