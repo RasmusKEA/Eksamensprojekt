@@ -113,13 +113,28 @@ public class ProjectController {
         return "redirect:/project";
     }
 
+    @PostMapping("spTaskDone")
+    public String spTaskDone(HttpServletRequest SPrequest){
+        int taskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
+
+        if(SPrequest.getParameter("taskStatus") == null){
+           tr.setSPTaskUndone(taskID);
+           return "redirect:/project";
+        }
+
+        tr.setSPTaskDone(taskID);
+        return "redirect:/project";
+    }
+
     @PostMapping("taskDone")
     public String taskDone(HttpServletRequest SPrequest){
         int taskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
 
+        System.out.println(SPrequest.getParameter("taskStatus"));
+
         if(SPrequest.getParameter("taskStatus") == null){
-           tr.setTaskUndone(taskID);
-           return "redirect:/project";
+            tr.setTaskUndone(taskID);
+            return "redirect:/project";
         }
 
         tr.setTaskDone(taskID);
