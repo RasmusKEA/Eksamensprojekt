@@ -19,6 +19,9 @@ public class ProjectServices {
 
     //Udregner slutdato for enhver task der oprettes i et projekt. Her tages hensyn til weekend
     public String calcEndDate(LocalDate date, int workdays){
+        if (workdays == 1){
+            return date.toString();
+        }
         LocalDate result = date;
         int addedDays = 0;
         while (addedDays < workdays) {

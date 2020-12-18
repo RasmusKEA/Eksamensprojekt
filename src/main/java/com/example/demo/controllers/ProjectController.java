@@ -49,11 +49,19 @@ public class ProjectController {
 
         double calcWorkhours;
 
-        if(taskEmployees == 0){
+
+        if (taskEmployees == 0){
             calcWorkhours = Math.ceil(((double) taskHours/1.0)/8.0);
+        }else if (taskHours == 0){
+            calcWorkhours = Math.ceil((1.0/(double) taskEmployees)/8.0);
+        }else if (taskEmployees == 0 && taskHours == 0){
+            calcWorkhours = Math.ceil((1.0/1.0)/8.0);
         }else{
             calcWorkhours = Math.ceil(((double) taskHours/(double) taskEmployees)/8.0);
         }
+
+
+
 
         int workhours = (int) calcWorkhours;
 
