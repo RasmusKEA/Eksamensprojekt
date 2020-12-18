@@ -28,28 +28,33 @@ public class ProjectRepository {
     //Returnerer en liste af alle projektnavne.
     public ArrayList<Project> getProjectsFromDB(){
         ArrayList<Project> listToReturn = new ArrayList<>();
+        ArrayList<Project> tempList = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname, MIN(startDate), MAX(endDate) FROM projects, tasks WHERE idprojects = projectid GROUP BY projectid");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT p.idprojects, p.projectname, \n" +
+                    "       MIN(least(coalesce(t.startDate,s.startdate),\n" +
+                    "                 coalesce(s.startDate,t.startdate))) as startdate,\n" +
+                    "       MAX(greatest(coalesce(t.endDate,s.enddate),\n" +
+                    "                    coalesce(s.endDate,t.enddate))) as enddate\n" +
+                    "  FROM projects p \n" +
+                    "  left join tasks t on p.idprojects = t.projectid\n" +
+                    "  left join sptasks s on p.idprojects = s.projectid\n" +
+                    "GROUP BY p.idprojects, p.projectname;");
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                listToReturn.add(new Project(rs.getString(2),rs.getInt(1), projectServices.formatDate(rs.getString(3)), projectServices.formatDate(rs.getString(4))));
-            }
-
-            ps = connection.establishConnection().prepareStatement("SELECT idprojects, projectname FROM projects");
-            rs = ps.executeQuery();
-            ArrayList<Project> tempList = new ArrayList<>();
-
-            while(rs.next()){
-                tempList.add(new Project(rs.getString(2), rs.getInt(1), "No date ", "set yet"));
+                String startDate = rs.getString(3);
+                String endDate = rs.getString(4);
+                if(startDate == null || endDate == null){
+                    tempList.add(new Project(rs.getString(2), rs.getInt(1), "No date", "set yet"));
+                }else{
+                    listToReturn.add(new Project(rs.getString(2),rs.getInt(1), projectServices.formatDate(rs.getString(3)), projectServices.formatDate(rs.getString(4))));
+                }
             }
 
             tempList.removeAll(listToReturn);
             listToReturn.addAll(tempList);
-
-            listToReturn.toString();
-
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -83,13 +83,12 @@ public class TaskRepository {
 
         ArrayList<Task> listToReturn = new ArrayList<>();
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, idtasks FROM tasks WHERE projectid = ?");
+            PreparedStatement ps = connection.establishConnection().prepareStatement("SELECT taskName, taskHours, taskEmployees, startDate, endDate, idtasks, taskStatus FROM tasks WHERE projectid = ?");
             ps.setInt(1, projectID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-
-                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), projectServices.formatDate(rs.getString(4)), projectServices.formatDate(rs.getString(5)), rs.getInt(6)));
+                listToReturn.add(new Task(rs.getString(1), rs.getInt(2), rs.getInt(3), projectServices.formatDate(rs.getString(4)), projectServices.formatDate(rs.getString(5)), rs.getInt(6), rs.getInt(7)));
             }
 
         } catch (SQLException e) {
@@ -98,7 +97,7 @@ public class TaskRepository {
         return listToReturn;
     }
 
-    public void setTaskDone(int taskID){
+    public void setSPTaskDone(int taskID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE sptasks SET taskStatus = '1' WHERE (idsptasks = ?)");
             ps.setInt(1, taskID);
@@ -108,9 +107,29 @@ public class TaskRepository {
         }
     }
 
-    public void setTaskUndone(int taskID){
+    public void setSPTaskUndone(int taskID){
         try {
             PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE sptasks SET taskStatus = '0' WHERE (idsptasks = ?)");
+            ps.setInt(1, taskID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setTaskDone(int taskID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE tasks SET taskStatus = '1' WHERE (idtasks = ?)");
+            ps.setInt(1, taskID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setTaskUndone(int taskID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE tasks SET taskStatus = '0' WHERE (idtasks = ?)");
             ps.setInt(1, taskID);
             ps.executeUpdate();
         } catch (SQLException e) {
