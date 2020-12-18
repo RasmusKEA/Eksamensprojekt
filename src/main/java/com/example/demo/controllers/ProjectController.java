@@ -8,8 +8,7 @@ import com.example.demo.repositories.TaskRepository;
 import com.example.demo.services.ProjectServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -87,6 +86,7 @@ public class ProjectController {
     //post mapping til slettelse af en task
     @PostMapping("deleteTask")
     public String deleteTask (HttpServletRequest SPrequest){
+
         int taskID = Integer.parseInt(SPrequest.getParameter("taskToDelete"));
         tr.deleteTask(taskID);
 
@@ -96,11 +96,13 @@ public class ProjectController {
     //post mapping til slettelse af en subproject task
     @PostMapping("deleteSPTask")
     public String deleteSPTask (HttpServletRequest SPrequest){
+
         int spTaskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
         tr.deleteSPTask(spTaskID);
 
         return "redirect:/project";
     }
+
 
     //post mapping til slettelse af et subproject
     @PostMapping("deleteSP")
@@ -108,6 +110,19 @@ public class ProjectController {
         int subProjectID = Integer.parseInt(request.getParameter("spToDelete"));
         spr.deleteSubProject(subProjectID);
 
+        return "redirect:/project";
+    }
+
+    @PostMapping("taskDone")
+    public String taskDone(HttpServletRequest SPrequest){
+        int taskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
+
+        if(SPrequest.getParameter("taskStatus") == null){
+           tr.setTaskUndone(taskID);
+           return "redirect:/project";
+        }
+
+        tr.setTaskDone(taskID);
         return "redirect:/project";
     }
 

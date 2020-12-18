@@ -96,15 +96,27 @@
                                         <th></th>
                                     </tr>
                                     <tr th:each="spTask1 : ${spTask.tasks}">
-                                        <form action="/deleteSPTask" method="post">
-                                            <input type="hidden" th:value="${spTask1.taskID}" name="spTaskToDelete">
-                                            <td th:text="${spTask1.taskName}"></td>
-                                            <td th:text="${spTask1.taskHours}"></td>
-                                            <td th:text="${spTask1.taskEmployees}"></td>
-                                            <td th:text="${spTask1.startDate}"></td>
-                                            <td th:text="${spTask1.endDate}"> </td>
-                                            <td> <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn" onclick="return confirm('Are you sure that you want to delete this task?')"></td>
-                                        </form>
+                                        <td th:text="${spTask1.taskName}"></td>
+                                        <td th:text="${spTask1.taskHours}"></td>
+                                        <td th:text="${spTask1.taskEmployees}"></td>
+                                        <td th:text="${spTask1.startDate}"></td>
+                                        <td th:text="${spTask1.endDate}"> </td>
+                                        <td>
+                                            <form action="deleteSPTask" method="post">
+                                                <input type="hidden" th:value="${spTask1.taskID}" name="spTaskToDelete">
+                                                <input type="image" src="delete.png"  alt="Submit" class="deleteTaskBtn" onclick="return confirm('Are you sure that you want to delete this task?')">
+                                            </form>
+
+                                            <form action="taskDone" method="post" th:if=${spTask1.isTaskDone.equals(1)}>
+                                                <input type="hidden" th:value="${spTask1.taskID}" name="spTaskToDelete">
+                                                <input onchange="this.form.submit()" class="deleteTaskBtn" type="checkbox" name="taskStatus" checked>
+                                            </form>
+
+                                            <form action="taskDone" method="post" th:if=${spTask1.isTaskDone.equals(0)}>
+                                                <input type="hidden" th:value="${spTask1.taskID}" name="spTaskToDelete">
+                                                <input onchange="this.form.submit()" class="deleteTaskBtn" type="checkbox" name="taskStatus">
+                                            </form>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>

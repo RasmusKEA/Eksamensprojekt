@@ -43,7 +43,6 @@
                 <form action="/projectPost" method="post">
                     <input class="projectInfo" name="projectID" type="text" th:value="'Project No.: ' + ${projectNames.projectID}" readonly="readonly">
                     <input class="projectInfo"  type="text"  th:value="'Project name: ' + ${projectNames.projectName}" readonly="readonly">
-                    <input class="projectInfo" type="text" value="Employees assigned: 10" readonly="readonly">
                     <input class="projectInfo" type="text" th:value="${projectNames.projectStartDate}  + ' - ' + ${projectNames.projectEndDate}" readonly="readonly">
                     <input type="submit" value="OPEN" class="openProject">
                 </form>

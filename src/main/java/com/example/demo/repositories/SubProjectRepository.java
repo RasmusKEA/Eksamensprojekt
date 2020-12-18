@@ -59,7 +59,7 @@ public class SubProjectRepository {
         ArrayList<SubProject> listToReturn = new ArrayList<>();
 
         try {
-            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate, idsptasks, SPstartDate, SPendDate\n" +
+            PreparedStatement ps = connection.establishConnection().prepareStatement("select idsubprojects, subprojectName, taskName, taskHours, taskEmployees, startDate, endDate, idsptasks, SPstartDate, SPendDate, taskStatus\n" +
                     "from subprojects \n" +
                     "inner join sptasks \n" +
                     "on subprojects.idsubprojects = sptasks.subprojectid \n" +
@@ -74,10 +74,10 @@ public class SubProjectRepository {
                 SubProject subProject = getSubProject(rs.getInt(1), listToReturn);
                 if( subProject == null ){
                     ArrayList<Task> listOfTask = new ArrayList<>();
-                    listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
+                    listOfTask.add(new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8), rs.getInt(11)));
                     listToReturn.add(new SubProject(rs.getInt(1), rs.getString(2), listOfTask, projectServices.formatDate(rs.getString(9)), projectServices.formatDate(rs.getString(10))));
                 }else{
-                    subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8)));
+                    subProject.getTasks().add( new Task(rs.getString(3), rs.getInt(4), rs.getInt(5), projectServices.formatDate(rs.getString(6)), projectServices.formatDate(rs.getString(7)), rs.getInt(8), rs.getInt(11)));
                 }
             }
 

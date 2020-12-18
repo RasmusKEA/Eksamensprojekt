@@ -96,7 +96,26 @@ public class TaskRepository {
             e.printStackTrace();
         }
         return listToReturn;
+    }
 
+    public void setTaskDone(int taskID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE sptasks SET taskStatus = '1' WHERE (idsptasks = ?)");
+            ps.setInt(1, taskID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setTaskUndone(int taskID){
+        try {
+            PreparedStatement ps = connection.establishConnection().prepareStatement("UPDATE sptasks SET taskStatus = '0' WHERE (idsptasks = ?)");
+            ps.setInt(1, taskID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

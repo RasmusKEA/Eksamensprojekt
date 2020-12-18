@@ -2,19 +2,19 @@ package com.example.demo.models;
 
 public class Task {
     private String taskName;
-    private int taskHours, taskEmployees, subProjectID, taskID;
+    private int taskHours, taskEmployees, subProjectID, taskID, isTaskDone;
     private String startDate, endDate;
 
-
-    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int subProjectID, int taskID) {
+    public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int taskID, int isTaskDone) {
         this.taskName = taskName;
         this.taskHours = taskHours;
         this.taskEmployees = taskEmployees;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.subProjectID = subProjectID;
         this.taskID = taskID;
+        this.isTaskDone = isTaskDone;
     }
+
 
     public Task(String taskName, int taskHours, int taskEmployees, String startDate, String endDate, int taskID) {
         this.taskName = taskName;
@@ -86,6 +86,14 @@ public class Task {
 
     public int getTaskID() {
         return taskID;
+    }
+
+    public int getIsTaskDone() {
+        return isTaskDone;
+    }
+
+    public void setIsTaskDone(int isTaskDone) {
+        this.isTaskDone = isTaskDone;
     }
 
     public void setTaskID(int taskID) {
