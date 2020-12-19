@@ -36,9 +36,9 @@
                 </form>
                 <form action="/editProjName" method="post">
                     <input type="hidden" name="projectID" th:value="${projectNames.projectID}">
-                    <input type="hidden" id="oldName" th:value="${projectNames.projectName}">
-                    <input type="hidden" id="newName" name="projectName">
-                    <input type="image" src="edit.png"  alt="Submit" onclick="change_text()" align="right" class="editProject">
+                    <input type="hidden" class="old-name" th:value="${projectNames.projectName}">
+                    <input type="hidden" class="new-name" name="projectName">
+                    <input type="image" src="edit.png" alt="Submit" onclick="change_text(this)" align="right" class="editProject">
                 </form>
                 <form action="/projectPost" method="post">
                     <input class="projectInfo" name="projectID" type="text" th:value="'Project No.: ' + ${projectNames.projectID}" readonly="readonly">
@@ -46,7 +46,6 @@
                     <input class="projectInfo" type="text" th:value="${projectNames.projectStartDate}  + ' - ' + ${projectNames.projectEndDate}" readonly="readonly">
                     <input type="submit" value="OPEN" class="openProject">
                 </form>
-
             </div>
         </div>
     </div>
@@ -54,16 +53,18 @@
 
 
 <script>
-    function change_text() {
+    function change_text(imageInput) {
         var changedText;
         var projectName = prompt("Please enter name of project:");
-        var oldName = document.getElementById("oldName").value;
-        if (projectName == null || projectName == "") {
+        var oldName = imageInput.parentNode.querySelector('.old-name').value;
+
+        if (projectName === null || projectName === "") {
             changedText = oldName;
         } else {
             changedText = projectName;
         }
-        document.getElementById("newName").value = changedText;
+
+        imageInput.parentNode.querySelector('.new-name').value = changedText;
     }
 </script>
 </body>
