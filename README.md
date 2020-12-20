@@ -2,7 +2,7 @@
 Eksamensprojekt 2020 KEA
 Af JMB, JL, RM, RT
 
-1. For at kunne køre projektet har vi vedlagt et script der opretter en database med data. 
+1. For at kunne køre projektet har vi vedlagt et script der opretter en database med data. Dette er både vedlagt på WiseFlow og her på Gitub (https://github.com/RasmusKEA/Eksamensprojekt/blob/main/DBcreate_Gruppe_1.sql)
 2. For at bruge dette script, skal der oprettes en database i MySQL workbench, vi har kaldt den alphasolutions. 
 3. Dernest tilgås denne, der trykkes på "Server" -> Data Import -> Import from self-contained file -> Import progress -> Start import
 
