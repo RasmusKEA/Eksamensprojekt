@@ -7,15 +7,6 @@ public class Project {
     private int projectID;
     private String projectStartDate, projectEndDate;
 
-    public Project(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public Project(String projectName, int projectID) {
-        this.projectName = projectName;
-        this.projectID = projectID;
-    }
-
     public Project(String projectName, int projectID, String projectStartDate, String projectEndDate) {
         this.projectName = projectName;
         this.projectID = projectID;

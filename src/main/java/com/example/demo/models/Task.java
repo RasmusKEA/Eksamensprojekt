@@ -15,20 +15,6 @@ public class Task {
         this.isTaskDone = isTaskDone;
     }
 
-
-
-
-    public Task(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public Task(String taskName, int taskHours, int taskEmployees, String startDate) {
-        this.taskName = taskName;
-        this.taskHours = taskHours;
-        this.taskEmployees = taskEmployees;
-        this.startDate = startDate;
-    }
-
     public String getTaskName() {
         return taskName;
     }

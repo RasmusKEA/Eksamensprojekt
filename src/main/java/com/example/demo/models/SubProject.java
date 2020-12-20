@@ -8,23 +8,6 @@ public class SubProject {
     private Task task;
     private ArrayList<Task> tasks;
 
-    public SubProject(int projctID, int subProjectHours, int subProjectEmployees, int subProjectID, String subProjectName) {
-        this.projctID = projctID;
-        this.subProjectHours = subProjectHours;
-        this.subProjectEmployees = subProjectEmployees;
-        this.subProjectID = subProjectID;
-        this.subProjectName = subProjectName;
-    }
-
-    public SubProject(String subProjectName) {
-        this.subProjectName = subProjectName;
-    }
-
-    public SubProject(String subProjectName, Task task, int subProjectID){
-        this.subProjectName = subProjectName;
-        this.task = task;
-        this.subProjectID = subProjectID;
-    }
 
     public SubProject(String subProjectName, int subProjectID){
         this.subProjectName = subProjectName;
