@@ -138,7 +138,6 @@ public class ProjectController {
     public String taskDone(HttpServletRequest SPrequest){
         int taskID = Integer.parseInt(SPrequest.getParameter("spTaskToDelete"));
 
-        System.out.println(SPrequest.getParameter("taskStatus"));
 
         if(SPrequest.getParameter("taskStatus") == null){
             tr.setTaskUndone(taskID);

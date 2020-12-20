@@ -60,7 +60,6 @@ public class ProjectRepository {
             e.printStackTrace();
         }
 
-        System.out.println("Size of list of all project names: " + listToReturn.size());
 
         return listToReturn;
     }
