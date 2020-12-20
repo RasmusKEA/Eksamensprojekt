@@ -10,3 +10,8 @@ Derudover skal man også tilføje en mysql connector driver til root-mappen i in
 1. Denne fil ligger på Fronter -> Rum -> dat20v1 -> Ressourcer -> Semester 2 -> Programmering -> Mysql -> MySqlJDBCDriver -> mysql-connector-java-8.0.21.jar
 2. Efter denne er downloadet åbnes projektet i IntelliJ, der højreklikkes på "Eksamensprojekt"-mappen -> Open module settings -> Libraries -> "+" -> Java -> Find der hvor din downloadede .jar fil er -> Open -> Apply -> OK
 3. Til sidst skal "user" og "password" i DBConnection klassen ændres til dit eget MySQL workbench login. 
+
+
+Der er ydermere oprettet et login til alle vejledere i databasen. Dette login er:
+Email: jeres kea mail.
+Password: fornavn i lower case.
